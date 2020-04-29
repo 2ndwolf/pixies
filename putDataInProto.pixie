@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<PixieFileV1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pattern>(^(?&lt;indent&gt;\s*) 
+((?&lt;type&gt;(?&lt;explicit&gt;e+x+p+l+i+c+i+)?[A-Za-z0-9:]+) |
+([A-Za-z0-9:]+(?&lt;vector&gt;[A-Za-z0-9]+)\&lt;(?&lt;vectortype&gt;[A-Za-z0-9:]+)\&gt;))
+\s
+(?&lt;value&gt;[A-Za-z0-9]+)) |
+(^(?&lt;indent&gt;\s*)(?&lt;enum&gt;[A-Z0-9]+),*)(?&lt;suffix&gt;\s?[(A-Za-z0-9]+)? |
+(?&lt;prefix&gt;{},\s)(?&lt;value&gt;[A-Za-z0-9]+) |
+(?&lt;endif&gt;\#endif)</Pattern>
+  <Input>//=================================
+// include guard
+#ifndef _ganiInformation_h_
+#define _ganiInformation_h_
+
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+#include "include/enums.h"
+
+namespace GaniBuilding {
+
+  enum Property : std::underlying_type_t&lt;std::byte&gt; {
+    CONTINUOUS,
+    LOOP,
+    SINGLEDIRECTION,
+    SETBACKTO,
+  };
+
+  enum DefaultImageType {
+    NOTDEFAULT,
+    SPRITES,
+    SHIELD,
+    HEAD,
+    BODY,
+    SWORD,
+    HORSE,
+    PARAM1,
+    ATTR1,
+    PARAM2,
+    ATTR2,
+    PARAM3,
+    ATTR3
+  };
+
+  enum Directions {
+    UP,
+    LEFT,
+    DOWN,
+    RIGHT,
+  };
+
+
+  class SpriteDef {
+    public:
+      int index{};
+      std::string image;
+      int offX{};
+      int offY{};
+      int width{};
+      int height{};
+      std::string name;
+      DefaultImageType defaultImage = NOTDEFAULT;
+
+      SpriteDef() = default;
+
+      SpriteDef(int pIndex, std::string pImage, int pOffX, int pOffY, int pWidth, int pHeight, std::string pName) : index(pIndex), image(pImage), offX(pOffX), offY(pOffY), width(pWidth), height(pHeight), name(pName) {
+        if (pImage == "SPRITES") {
+          defaultImage = SPRITES;
+        } else if (pImage == "SHIELD") {
+          defaultImage = SHIELD;
+        } else if (pImage == "HEAD") {
+          defaultImage = HEAD;
+        } else if (pImage == "BODY") {
+          defaultImage = BODY;
+        } else if (pImage == "ATTR1") {
+          defaultImage = ATTR1;
+        } else if (pImage == "ATTR2") {
+          defaultImage = ATTR2;
+        } else if (pImage == "ATTR3") {
+          defaultImage = ATTR3;
+        } else if (pImage == "SWORD") {
+          defaultImage = SWORD;
+        } else if (pImage == "HORSE") {
+          defaultImage = HORSE;
+        } else if (pImage == "PARAM1") {
+          defaultImage = PARAM1;
+        } else if (pImage == "PARAM2") {
+          defaultImage = PARAM2;
+        } else if (pImage == "PARAM3") {
+          defaultImage = PARAM3;
+        }
+      };
+  };
+
+  class Sound {
+    public:
+      std::string fileName;
+      int x{}, y{};
+
+      Sound() = default;
+
+      Sound(std::string &amp;pFileName, double pX, double pY) : fileName(pFileName), x(static_cast&lt;int&gt;(pX * 16)), y(static_cast&lt;int&gt;(pY * 16)) {};
+  };
+
+  class AniSprite {
+    public:
+      int spriteIndex{}, x{}, y{}, layer{};
+
+      AniSprite() = default;
+
+      AniSprite(int pSpriteIndex, int pX, int pY, int pLayer) : spriteIndex(pSpriteIndex), x(pX), y(pY), layer(pLayer) {};
+  };
+
+  class AniDir {
+    public:
+      Directions direction{};
+      std::vector&lt;AniSprite&gt; aniSprites;
+
+      AniDir() = default;
+
+      explicit AniDir(Directions pDirection) : direction(pDirection) {};
+  };
+
+  class AniFrame {
+    public:
+      std::vector&lt;AniDir&gt; aniDirs;
+      int wait{};
+      std::vector&lt;Sound&gt; sounds;
+
+      AniFrame() = default;
+  };
+
+  class AttachedSprite {
+    public:
+      int spriteA{}, spriteB{}, relX{}, relY{};
+
+      AttachedSprite() = default;
+
+      AttachedSprite(int pSpriteA, int pSpriteB, int pRelX, int pRelY) : spriteA(pSpriteA), spriteB(pSpriteB), relX(pRelX), relY(pRelY) {};
+  };
+
+  class GaniInformation {
+    public:
+      std::vector&lt;SpriteDef&gt; spriteDefs;
+      std::vector&lt;AniFrame&gt; aniFrames;
+      std::vector&lt;Property&gt; properties;
+      std::vector&lt;AttachedSprite&gt; attachedSprites;
+      std::vector&lt;std::string&gt; defaultAttributes;
+      std::vector&lt;std::string&gt; defaultParameters;
+      std::string defaultHead;
+      std::string defaultBody;
+      std::string nextGani = "none";
+
+      cGaniInformation() = default;
+  };
+}
+#endif
+</Input>
+  <ReplacementString>${1} ${2}</ReplacementString>
+  <Options>
+    <PixieRegexOption Selected="false" OptionName="IgnoreCase" />
+    <PixieRegexOption Selected="true" OptionName="Multiline" />
+    <PixieRegexOption Selected="false" OptionName="ExplicitCapture" />
+    <PixieRegexOption Selected="false" OptionName="Singleline" />
+    <PixieRegexOption Selected="true" OptionName="IgnorePatternWhitespace" />
+    <PixieRegexOption Selected="false" OptionName="RightToLeft" />
+    <PixieRegexOption Selected="false" OptionName="ECMAScript" />
+    <PixieRegexOption Selected="false" OptionName="CultureInvariant" />
+  </Options>
+  <ReplaceLiveOutput>true</ReplaceLiveOutput>
+  <HighlightLiveOutput>true</HighlightLiveOutput>
+  <PopulateReplacement>true</PopulateReplacement>
+  <UseCodeReplacement>true</UseCodeReplacement>
+  <ReplacementCode>// putDataInProto.pixie
+
+// User defined variables:
+string nameSpace = "Saving";
+string mainClass = "GaniInformation";
+string mainFunctionName = "ganiToServerBSP";
+string[] enumerations = {"Property", "DefaultImageType", "Directions"};
+
+//
+
+int _matchCount;
+bool firstDone;
+string indentation;
+string previousType;
+string lastClassOccurence;
+string topMsg;
+string valueLower;
+string type;
+string options = "optional";
+string header = "#include &lt;fstream&gt;\n#include &lt;cstring&gt;\n";
+string body;
+string append; 
+string postpend;
+string empty;
+
+string[] possibleIncludes = {"&lt;vector&gt;", "&lt;string&gt;"};
+string[] defaultTypes = {"int", "std::string"};
+string[] protoTypes = {"int32", "string"};
+
+public string Replace(Match match)
+{
+	if(match.Groups["endif"].Length != 0){
+		header += "\n" +
+"#include &lt;google/protobuf/io/zero_copy_stream_impl.h&gt;\n" +
+"#include &lt;google/protobuf/io/gzip_stream.h&gt;\n" +
+"\n" +
+"#include " + "\"include/" + mainClass + ".h\"" + "\n";
+
+		return header + body + addSerialize() + append + finalize(true) + postpend + addFooter();
+
+	}
+	if(match.Groups["indent"].Length != 0){
+		indentation = match.Groups["indent"].Value;
+	}
+
+	valueLower = ToLower(match.Groups["value"].Value);
+
+	options = "optional";
+
+	if (match.Groups["type"].Value == "enum"){
+
+	} else if (match.Groups["type"].Value == "namespace"){
+		topMsg = match.Groups["value"].Value;
+		body += addBody(match);
+
+	} else if(match.Groups["type"].Value == "class"){
+		if(firstDone){
+			append += finalize(true);
+		} else {
+			append += finalize(false);
+			firstDone = true;
+		}
+		lastClassOccurence = match.Groups["value"].Value;
+		append += startPopulate(match);
+
+	} else if(match.Groups["explicit"].Length == 0 &amp;&amp; match.Groups["suffix"].Length == 0) {
+		_matchCount++;
+
+		if(match.Groups["type"].Length &gt; 0){
+			type = Type(match.Groups["type"].Value);
+			addInclude(type);
+
+		} else if(match.Groups["vector"].Length &gt; 0){
+			type = Type(match.Groups["vectortype"].Value);
+			addInclude("vector");
+			postpend += loop(match);
+			options = "repeated";			
+		}
+
+		if(match.Groups["enum"].Length &gt; 0) {
+
+		} else	{
+			append += populate(match);
+		}
+	}
+
+	return empty;
+}
+
+public string Type(string type){
+	for(int i = 0; i &lt; defaultTypes.Length; i++){
+		if(type == defaultTypes[i]){
+			return protoTypes[i];
+		}
+	}
+	return ToLower(type);
+}
+
+public string FirstLetterLower(string value){
+	string firstLetterLower = "";
+	for(int i = 0; i &lt; value.Length; i++){
+		if(i==0){
+			firstLetterLower += value[i];
+			firstLetterLower = ToLower(firstLetterLower);
+		} else {
+			firstLetterLower += value[i];
+		}
+	}
+	return firstLetterLower;
+}
+
+public string ToLower(string value){
+	string toLower = "";
+
+	for(int i = 0; i &lt; value.Length; i++){
+
+		char possUpper = value[i];
+		switch(possUpper){
+			case 'A':
+				toLower += addSnake(i) + 'a';
+				break;
+			case 'B':
+				toLower += addSnake(i) + 'b';
+				break;
+			case 'C':
+				toLower += addSnake(i) + 'c';
+				break;
+			case 'D':
+				toLower += addSnake(i) + 'd';
+				break;
+			case 'E':
+				toLower += addSnake(i) + 'e';
+				break;
+			case 'F':
+				toLower += addSnake(i) + 'f';
+				break;
+			case 'G':
+				toLower += addSnake(i) + 'g';
+				break;
+			case 'H':
+				toLower += addSnake(i) + 'h';
+				break;
+			case 'I':
+				toLower += addSnake(i) + 'i';
+				break;
+			case 'J':
+				toLower += addSnake(i) + 'j';
+				break;
+			case 'K':
+				toLower += addSnake(i) + 'k';
+				break;
+			case 'L':
+				toLower += addSnake(i) + 'l';
+				break;
+			case 'M':
+				toLower += addSnake(i) + 'm';
+				break;
+			case 'N':
+				toLower += addSnake(i) + 'n';
+				break;
+			case 'O':
+				toLower += addSnake(i) + 'o';
+				break;
+			case 'P':
+				toLower += addSnake(i) + 'p';
+				break;
+			case 'Q':
+				toLower += addSnake(i) + 'q';
+				break;
+			case 'R':
+				toLower += addSnake(i) + 'r';
+				break;
+			case 'S':
+				toLower += addSnake(i) + 's';
+				break;
+			case 'T':
+				toLower += addSnake(i) + 't';
+				break;
+			case 'U':
+				toLower += addSnake(i) + 'u';
+				break;
+			case 'V':
+				toLower += addSnake(i) + 'v';
+				break;
+			case 'W':
+				toLower += addSnake(i) + 'w';
+				break;
+			case 'X':
+				toLower += addSnake(i) + 'x';
+				break;
+			case 'Y':
+				toLower += addSnake(i) + 'y';
+				break;
+			case 'Z':
+				toLower += addSnake(i) + 'z';
+				break;
+			default:
+				toLower += value[i];
+				break;
+		}
+	}
+
+	return toLower;
+}
+
+string addSnake(int i){
+	if(i != 0){
+		return "_";	
+	}
+	return "";
+}
+
+int inside(string value, string[] strArray){
+	for(int i = 0; i &lt; strArray.Length; i++){
+		if(value == strArray[i]){
+			return i;
+		}
+	}
+	return -1;
+}
+
+string addBody(Match match){
+	return 
+"#include \"src/proto/" + valueLower + ".pb.h\"\n" +
+"\n" +
+"namespace " + nameSpace + " {" + "\n" +
+"  void " + mainFunctionName + "(" + match.Groups["value"].Value + "::" + mainClass + " " + "object, string fileName, string as){\n" +
+"    " + ToLower(topMsg) + "_" + ToLower(mainClass) + " *pointer = populate_" + mainClass + "(object);\n" +
+"\n";
+}
+
+string startPopulate(Match match){ // append
+	
+	return
+"\n" + 
+"void populate_" + match.Groups["value"].Value + "(" + match.Groups["value"].Value + " object, " + topMsg + "::" + match.Groups["value"].Value + "* pointer){\n";
+}
+
+string populate(Match match){ // append
+	if(options == "repeated"){
+		if(inside(match.Groups["vectortype"].Value, defaultTypes) != -1){
+	return 
+"  populate_" + match.Groups["value"].Value + "(object." + match.Groups["value"].Value + ", " + "pointer" + ");\n";
+		} else {
+	return
+"  populate_" + match.Groups["vectortype"].Value + "(object." + match.Groups["value"].Value + ", " + "pointer" + "-&gt;add_" + ToLower(match.Groups["value"].Value) + "());\n";
+		}
+	}
+	return
+"  " + "pointer" + "-&gt;set_" + ToLower(match.Groups["value"].Value) + "(" +
+"" + (inside(match.Groups["type"].Value, enumerations) != -1 ?
+"\n    static_cast&lt;" + ToLower(topMsg+lastClassOccurence+match.Groups["type"].Value) + "&gt;(object." + match.Groups["value"].Value + "));\n"  :
+"object." + match.Groups["value"].Value + ");\n");
+}
+
+string finalize(bool returnSomething){  //append
+	if(returnSomething){
+	return "  return pointer;\n}\n";
+	} else {
+	return "}\n";
+	}
+}
+
+string loop(Match match){ // postpend
+	if(inside(match.Groups["vectortype"].Value, defaultTypes) != -1){
+	 return
+"\n" +
+"void populate_" + match.Groups["value"].Value + "(vector&lt;" + match.Groups["vectortype"].Value + "&gt; object, " + topMsg + "::" + mainClass +"* pointer){\n" +
+"  " + type + "* ptr = pointer-&gt;add_"+ ToLower(match.Groups["value"].Value) +"();\n" +
+"  for(int i = 0; i &lt; object.size; i++){\n"+
+"    ptr-&gt;add_" + ToLower(match.Groups["value"].Value) + "(object[i]);\n" +
+"  }\n" +
+"}\n";
+	} else {
+	return 
+"\n" +
+"void populate_" + match.Groups["vectortype"].Value + "(vector&lt;" + match.Groups["vectortype"].Value + "&gt; object, " + topMsg + "::" + mainClass +"* pointer){\n" +
+"  for(int i = 0; i &lt; object.size; i++){\n"+
+"    populate_" + match.Groups["vectortype"].Value +"(object." + match.Groups["value"].Value + "[i], pointer-&gt;add_" + ToLower(match.Groups["vectortype"].Value) + "());\n" +
+"  }\n" +
+"}\n";
+	}
+}
+
+string addFooter(){
+	return 
+"\n}"; // serialize mainClass
+}
+
+void addInclude(string type){
+	int includeIndex = inside("&lt;" + type + "&gt;", possibleIncludes);
+	if(includeIndex != -1){
+		header += "#include " + possibleIncludes[includeIndex] + "\n";
+		possibleIncludes[includeIndex] = "";
+	}
+}
+
+string addSerialize(){
+	return
+"     auto uncompressedBytes = *pointer.ByteSizeLong();\n" +
+"     cout &lt;&lt; uncompressedBytes;\n" +
+"\n" +
+"     std::unique_ptr&lt;char[]&gt; buffer(new char[uncompressedBytes]);\n" +
+"     google::protobuf::io::ArrayOutputStream aos(buffer.get(), (int) uncompressedBytes);\n" +
+"     google::protobuf::io::GzipOutputStream gos(&amp;aos);\n" +
+"\n" +
+"     if (pointer-&gt;SerializeToZeroCopyStream(&amp;gos)){\n" +
+"       gos.Close();\n" +
+"\n" +
+"       if (gos.ZlibErrorCode() &gt; 0)\n" +
+"       {\n" +
+"         auto compressedBytes = aos.ByteCount();\n" +
+"         std::ofstream out(fileName + \".\" + as, std::ios::binary);\n" +
+"         out.write(buffer.get(), compressedBytes);\n" +
+"\n" +
+"         std::cout &lt;&lt; \"Wrote compressed Protobuf message of size \" &lt;&lt; compressedBytes &lt;&lt; \" bytes (\"\n" +
+"           &lt;&lt; (100.0 * (uncompressedBytes - compressedBytes) / uncompressedBytes) &lt;&lt; \"% compression ratio): \"\n" +
+"           &lt;&lt; fileName + \".\" + as &lt;&lt; std::endl;\n" +
+"       }\n";
+}</ReplacementCode>
+</PixieFileV1>
