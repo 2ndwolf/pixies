@@ -1,0 +1,2303 @@
+Global:
+  onClassLoaded(str) event - a class script has been updated: name of the class
+  onConnectingToServer(str, str, int) event - connecting to: servername, address, port
+  onControlKeyDown(int, str, int, str) event - a control key (VK_ESCAPE, VK_F1 etc.) has been pressed, parameters are keycode, keytext, scancode, external window name
+  onControlKeyUp(int, str, int, str) event - a control key (VK_ESCAPE, VK_F1 etc.) has been released, parameters are keycode, keytext, scancode, external window name
+  onDefaultStyleChanges(str) event - the $pref::Video::defaultguistyle has been changed
+  onExternalStyleChanges(str) event - the $pref::Video::externalguistyle has been changed
+  onFileChunkReceived(str, int, int) event - file download progress: filename, current position, full size
+  onFileDownloaded(str, int) event - a game file has been downloded: filename, size
+  onFilesUploaded() event - finished uploading all files to the file browser
+  onFirstResponderChanges(obj) event - the control that received the keyboard input changed
+  onFolderLog(str) event - scripted RC file browser message
+  onLevelFileUpdated(str) event - a game file has been updated: filename
+  onLogMessage(str, float, float, float, str) event - log message: text, red, green, blue, log type
+  onMapClick(obj) event - clicked on a player on the map: player object
+  onMouseYawPitch(int, int) event - the mouse moved in 3D mode: yaw and pitch
+  onMusicDataReceived(str, str) event - music meta data received: name and value
+  onOpenPlayerPositionWindow() event - the key for opening the positon window (F5) has been pressed
+  onOpenProfileWindow(obj) event - right click on a player or call to showProfile() to open the profile window
+  onOpenServerList() event - the key for opening the serverlist (F8) has been pressed
+  onPackagesDownloadComplete() event - all update packages (.gupd files) have been downloaded
+  onPackagesDownloaded() event - some update packages (.gupd files) have been downloaded
+  onPlayerChanges(obj, int) event - the look of a player changed: player object and id
+  onPlayerLanguageChanges(obj, str) event - the language of the player has changed: player object, new language
+  onPlayerLogin(obj, int) event - a player logged in: player object and id
+  onPlayerLogout(obj, int) event - a player logged out: player object (might be NULL) and id
+  onPM(obj) event - received a PM from a player: player object
+  onRCChat(str) event - scripted RC chat: text
+  onRemotePlayerChats(obj, str) event - another player is saying something: player object, text
+  onSelectedFileForUpload(str) event - selected a file, call uploadfile(filename)
+  onServerListerConnect() event - a connection to the server-lister (central server) established
+  onServerLogin() event - logged into a server
+  onToall(obj, str) event - received a toall message: player object and message
+  onTranslationUpdated(str) event - a translation file (.po) has been updated
+  onUpdatePackageDownloaded(obj) event - downloaded an update package (.gupd): package object
+  $pref::audio::midivolume - integer
+  $pref::audio::mp3volume - integer
+  $pref::audio::radiovolume - integer
+  $pref::audio::reversestereo - boolean
+  $pref::audio::sfxvolume - integer
+  $pref::capture::allowbyscript - boolean (read only)
+  $pref::capture::area - string
+  $pref::capture::audiobitrate - integer
+  $pref::capture::disabledaynight - boolean
+  $pref::capture::format - string
+  $pref::capture::fps - integer
+  $pref::capture::hideinterface - boolean
+  $pref::capture::recordaudio - boolean
+  $pref::capture::showmouse - boolean
+  $pref::capture::size - string
+  $pref::capture::videobitrate - integer
+  $pref::graal::allowglobalpms - boolean
+  $pref::graal::automapping - boolean
+  $pref::graal::defaultfontname - string - text font for player chat and nick names
+  $pref::graal::defaultfontsize - integer - text font size of player chat and nick names
+  $pref::graal::displaytrayicon - boolean
+  $pref::graal::dontsavepasswords - boolean
+  $pref::graal::dontsavepms - boolean
+  $pref::graal::filescan - boolean - enables full scan of Graal folder for files at startup (default disabled)
+  $pref::graal::language - string
+  $pref::graal::limitnicknames - boolean
+  $pref::graal::loadbuddylistfromserver - boolean
+  $pref::graal::nicknamelimit - integer
+  $pref::graal::nomassmessages - boolean
+  $pref::graal::notoalls - boolean
+  $pref::graal::showyourselfonbuddylists - boolean
+  $pref::graal::utf8fontfile - string - the font file to use for utf8/unicode text (all code pages starting from 1)
+  $pref::video::defaultguistyle - string - the gui style which should be used for in-game windows
+  $pref::video::externalguistyle - string - the gui style which should be used for external windows
+  $pref::video::fullscreenmode - string
+  $pref::video::resolution - integer
+  $pref::video::screenshotformat - string
+  $pref::video::useopengl - boolean
+  $pref::video::windowmode - string
+  allfeatures - integer (read only)
+  allowedimageanimations - string - sets a list of images which will be animated, set to "all" to allow all animations
+  allowloginreconnect - boolean
+  allplayerscount - integer (read only)
+  allrenderobjecttypes - integer (read only)
+  allstats - integer (read only)
+  bodycacheperplayer - integer - number of colored body sprites which are cached, higher number means less texture updates but also more texture memory usage
+  canspin - boolean (read only)
+  carriesblackstone - boolean (read only)
+  carriesbush - boolean (read only)
+  carriesnpc - boolean (read only)
+  carriessign - boolean (read only)
+  carriesstone - boolean (read only)
+  carriesvase - boolean (read only)
+  disableactionprojectile - boolean - by default the player and npcs get an onActionProjectile event when a projectile hits them; with this flag you can disable that for speedup
+  disableactionprojectile2 - boolean - when a projectile lands on the ground or hits an object then an event onActionProjectile2 is sent to all scripts; with this flag you can disable that for speedup; on mobile platforms it's disabled by default
+  disableapnoheal - boolean - makes it possible to heal if you are below 40 ap
+  disableapsaint - boolean - makes it possible to hurt the player if having ap 100
+  disabledsoundeffects - string - array of sound files (wav) which you don't want to be played
+  disablenpchits - boolean - disables detection of npcs hitting players or baddies; can speed up things on maps with many npcs
+  disablenpconnpchits - boolean - disables detection of client-side npcs hitting each other with sword; can speed up things on maps with many npcs; by default disabled on mobile platforms
+  downloadfile - string (read only)
+  downloadpos - integer (read only)
+  downloadsize - integer (read only)
+  drawallinsidenpcs - boolean - set this to true if you want all npcs being displayed in non-gmap levels (possibly needed if you have many npcs using showimg())
+  emoticonchar - string (read only)
+  enableganimoviereposition - boolean
+  enableutf8 - boolean - enables utf8/unicode text display
+  focusx - float (read only)
+  focusy - float (read only)
+  ghostsnear - boolean (read only)
+  graalplugincookie - string (read only)
+  graalversion - float (read only)
+  gravity - float
+  installedlanguages - string (read only)
+  isapplicationactive - boolean (read only)
+  iscarrying - boolean (read only)
+  isfocused - boolean (read only)
+  isgraalplugin - boolean (read only)
+  isleader - boolean (read only)
+  isonmap - boolean (read only)
+  isopengl - boolean (read only)
+  isrecordingvideo - boolean (read only)
+  isstreamingvideo - string (read only)
+  jpegquality - integer
+  lastdownloadfile - string (read only)
+  leftmousebutton - boolean (read only)
+  leftmousebuttonglobal - boolean (read only)
+  levelorgx - float (read only)
+  levelorgy - float (read only)
+  lighteffectsenabled - boolean
+  loadingscreenenabled - boolean - must be disabled by script starting with v5.226
+  middlemousebutton - boolean (read only)
+  middlemousebuttonglobal - boolean (read only)
+  minfilecachesize - integer - files below this size are kept in memory instead of saved to hard drive, set to 0 for saving everything (the default)
+  mousebuttons - integer (read only)
+  mousebuttonsglobal - integer (read only)
+  mousescreenx - integer
+  mousescreeny - integer
+  mousewheeldelta - integer (read only)
+  mousex - float
+  mousey - float
+  musiclen - float (read only)
+  musicpos - float (read only)
+  particleeffectsenabled - boolean
+  preloadleveldefaulttile - integer - the default tile used for preloading levels, by default 0
+  rightmousebutton - boolean (read only)
+  rightmousebuttonglobal - boolean (read only)
+  screenheight - integer (read only)
+  screenpixelscale - float (read only)
+  screenwidth - integer (read only)
+  scriptedcontrols - boolean (read only)
+  scriptedplayerlist - boolean (read only)
+  scriptlogwritetoreadonly - boolean
+  selectedlistplayers - object
+  selectedsword - integer
+  selectedweapon - integer
+  servername - string (read only)
+  serverstartconnect - string
+  serverstartparams - string
+  shotbybaddy - boolean (read only)
+  shotbyplayer - boolean (read only)
+  showterraingrid - boolean
+  spritesimage - string
+  statusimage - string
+  timevar - integer (read only)
+  timevar2 - float (read only)
+  wasshooted - boolean (read only)
+  watercolorflags - integer - changes the color of the 3d terrain, it's made of bit flags (default is 4):  1 - red highlight, 2 - green highlight, 4 - blue highlight,  8 - red clear, 16 - green clear, 32 - blue clear
+  waterheight - float
+  weapons - object (read only)
+  weaponsenabled - boolean
+  weathereffectsenabled - boolean
+  addcontrol(obj)
+  adddnsentry(str, str)
+  addtiledef(str, str, int) - parameters: image,levelstart,type; specifys the tiles images for all levels that start with 'levelstart' (0-standard type, 1-new order)
+  addtiledef2(str, str, int, int) - parameters: image,levelstart,x,y; replaces parts of the tiles image for all levels that start with 'levelstart'
+  addutf8fontrange(str, int, int) - parameters are font file, start page and endpage; this defines a font to use for specific utf8 character pages
+  aes_decrypt(str, str, str) - returns string - decrypts data, parameters are the AES key, init vector (16 bytes) and the data, which must have a length of multiple of 16
+  aes_encrypt(str, str, str) - returns string - encrypts data, parameters are the AES key, init vector (16 bytes) and the data, which must have a length of multiple of 16 otherwise it will be filled with null bytes
+  aindexof(float, obj) - returns integer
+  arccos(float) - returns float
+  arcsin(float) - returns float
+  attachplayertoobj(int, int)
+  base64decode(str) - returns string - decodes a string with base64 scheme
+  base64encode(str) - returns string - encodes a string with base64 scheme
+  boxcontains(str, str) - returns boolean
+  boxcontainsvector(str, str) - returns boolean
+  boxintersect(str, str) - returns string
+  boxoverlaps(str, str) - returns boolean
+  boxscale(str, str) - returns string
+  callnpc(int, params...)
+  callweapon(int, params...)
+  checksum(str) - returns float - calculates a checksum number on the specified string, this is also known as crc or crc32
+  clearemptyglobalvars() - clears non-static empty global variables; this is mainly interesting on server-side
+  clearutf8fontranges() - clears all utf8 font files previously defined with addUTF8FontRange()
+  contains(str, str) - returns boolean
+  convertlatintoutf8(str) - returns string
+  converttimetostring(float) - returns string - prints the timevar2 like 'Wed Apr  8 20:53:13 2009', see formatTimeString() for more options
+  convertutf8tolatin(str) - returns string
+  copystrings(str, str)
+  cursoroff()
+  cursoron()
+  decompressfile(str, str, str, int) - returns boolean - parameters are filename, file name pattern (*), destination folder and flags (1 (keep zip paths) + 2 (keep original modification time)); unzips a file into the specified folder; on server-side the npcserver needs to have 'rw *' access on the destination folder otherwise it will extract files into scriptfiles/
+  degtorad(float) - returns float
+  deletefile(str) - returns boolean
+  des_decrypt(str, str) - returns string - decrypts data with DES algorithm, parameters are key and data
+  des_encrypt(str, str) - returns string - encrypts data with DES algorithm, parameters are key and data
+  detachplayer()
+  disabledefmovement()
+  disablemap()
+  disablepause()
+  disableselectweapons()
+  disableweapons()
+  downloadfiletofolder(str, str) - download a file (from the currently opened folder in scripted RC) to the specified destination (folder+name), if the script has access to the folder
+  echo(str)
+  enabledefmovement()
+  enablefeatures(int)
+  enablemap()
+  enablepause()
+  enableselectweapons()
+  enableweapons()
+  escapefilename(str) - returns string
+  escapestring(str) - returns string - adds \ in front of ", ' and \, and removes non-printable characters; made for mysql queries, same as string.escape()
+  escapestringkeepnewline(str) - returns string - adds \ in front of ", ' and \, and removes non-printable characters, but keeps new line characters
+  explodebomb(int)
+  extractfilebase(str) - returns string
+  extractfileext(str) - returns string
+  extractfilename(str) - returns string
+  extractfilepath(str) - returns string
+  fileexists(str) - returns boolean
+  filesize(str) - returns integer
+  fileupdate(str) - returns boolean - requests the download or reloading of a file
+  fileupdateignore(str) - ignores further updates of the file on server-side
+  findani(str) - returns object
+  findfiles(str, int) - returns object - returns an array of found files, parameter are the pattern and flags (1=search recursive)
+  findlevel(str) - returns object
+  findnearestplayer(float, float) - returns object
+  findnearestplayers(float, float) - returns object
+  findnpcbyid(int) - returns object
+  findobject(str) - returns object - finds a global variable
+  findpathinarray(obj, obj, obj, obj, obj, int, int, int) - returns object - simple pathfinding: parameters are a two-dimensional array ('tiles'), tiles were we are allowed to walk, tiles where we are not allowed to walk, tiles where we may stop, tiles where we should not stop, start x and y, maximum path length; the arrays for allowed/non-allowed tiles are only checked if they are not null
+  findplayer(str) - returns object
+  findplayer2(str) - returns object - same as findplayerbycommunityname(), finds players by account or community name
+  findplayerbycommunityname(str) - returns object
+  findplayerbyid(int) - returns object
+  findweapon(str) - returns object
+  format2(str, obj) - returns string - like format(), except that this expects the format string and an array of variables instead of passing the variables as separate parameters
+  formattimestring(str, float) - returns string - formats a string like the strftime unix function, parameters are the format and time
+  freeallresources()
+  freefileresources(str)
+  freezeplayer(float)
+  getascii(str) - returns integer
+  getbasepackage() - returns object
+  getboxcenter(str) - returns string
+  getcallstack() - returns object - returns an array of TCallStackEntry
+  getdesktopresolution() - returns string
+  getdisplaydevicelist() - returns object - lists available display devices (OpenGL, DirectX9)
+  getdownloadedupdatepackagesize() - returns integer
+  getdownloadingpackage() - returns object
+  getdownloadingpackagescount() - returns integer
+  getdownloadprogress(str) - returns float - returns value between 0 and 1 to show the download progress for the given file (0 - not started, 1 - finished)
+  getextension(str) - returns string - same as extractFileExt()
+  getfilemodtime(str) - returns integer - gets the file modifcation time (in unix time compatible to timevar2); accepts both exact file path and plain file name
+  getgamesubversion() - returns string - distribution platform (amazon, googleplay etc.)
+  gethttprequest(str, int, str) - returns object - finds an active http request with the given host, port and file
+  gethttprequestforurl(str) - returns object - finds an active http request with the given url
+  gethttprequests() - returns object
+  getimgheight(str) - returns integer
+  getimgpixel(str, int, int) - returns object
+  getimgwidth(str) - returns integer
+  getkeycode(str) - returns integer
+  getlastfiledownloadtime() - returns float - the last time a file or a chunk of a file has been received from the Graal server
+  getlastfilerequesttime() - returns float - the last time a file has been requested from the Graal server
+  getlastwebdownloadtime() - returns float - the last time a file or a chunk of a file has been received from a web server
+  getlastwebrequesttime() - returns float - the last time a file has been requested from a web server
+  getloginaccountname() - returns string
+  getmapx(str) - returns integer
+  getmapy(str) - returns integer
+  getmemoryusage() - returns integer
+  getmusicfilename() - returns string - returns the currently played music
+  getmusicstatus() - returns string
+  getmusictags() - returns object
+  getnearestplayer(float, float) - returns integer
+  getnearestplayers(float, float) - returns object
+  getpackagesdownloadcomplete() - returns boolean
+  getpackagesdownloaded() - returns boolean
+  getplatform() - returns string
+  getplayerlisticons() - returns object
+  getpremiumoption() - returns string
+  getresolutionlist() - returns object - lists available fullscreen resolutions for the current device
+  getscriptaccessfile(str, bool) - returns string
+  getservername() - returns string - gets the name of the current server
+  getstringkeys(str) - returns object
+  gettextheight(float, str, str) - returns integer
+  gettextwidth(float, str, str, str) - returns integer
+  gettileset() - returns string - returns the current main tileset (pics1.png, picso.png etc.)
+  gettilesettype() - returns integer - returns the current tileset type (pics1.png:0, picso.png:5 etc.)
+  gettotalupdatepackagesize() - returns integer
+  getupdatepackage(str) - returns object
+  getutctime() - returns integer - get's the local time in seconds since 1970, is the same as int(timevar2) on server-side
+  getz(float, float) - returns float
+  graalcontrolhasfocus(bool) - returns boolean - parameter says if it should also check if the chat bar has the focus
+  hideplayer(float)
+  hidesword(float)
+  hitnpc(int, float, float, float)
+  hitobjects(float, float, float)
+  hitplayer(int, float, float, float)
+  isadminguild(str) - returns boolean
+  isclassloaded(str) - returns boolean
+  iscursoron() - returns boolean
+  isdemoversion() - returns boolean
+  isdownloading(str) - returns boolean - checks if a file is currently downloaded or requested from the server
+  isdownloadingfiles() - returns boolean - checks if the game is currently downloading or requesting files from the server
+  isfullscreenmode() - returns boolean
+  isimgpixeltransparent(str, int, int) - returns boolean
+  isimgrectangletransparent(str, int, int, int, int) - returns boolean
+  ismusicplaying() - returns boolean
+  isobject(str) - returns boolean
+  isofflinemode() - returns boolean - says if the game is running in offline mode (only for special packaged games)
+  ispremiumversion() - returns boolean
+  issoundplaying(str) - returns boolean - returns if a sound with the specified filename is playing
+  isstringutf8(str) - returns boolean - checks if a text is in correct UTF8 format (unicode)
+  keydown(int) - returns boolean
+  keydown2(int, bool) - returns boolean
+  keydown2global(int, bool) - returns boolean
+  keydownglobal(int) - returns boolean
+  keyname(int) - returns string - returns the name of a default action key (0-11)
+  keyname2(int) - returns string - returns the name of a key, parameter is the keycode
+  lay2(str, float, float)
+  loadclass(str) - preloads the clientside script of a class
+  loadmap(str)
+  loadtranslation(str)
+  lowercase(str) - returns string
+  makescreenshot2(str, int, float, float, float, int, int) - makes a screenshot without gui, parameters are filename, render bit flags (1 (local player) + 2 (other players) + 4 (npcs) + 8 (particles from removed objects) + 0x10 (weapon showimgs) + 0x20 (daynight effect), or 0x3f for everything), levelx, levely, levelz, pixelwidth and pixelheight
+  makescreenshotfull(str, int, int) - makes a screenshot including gui and saves under the specified filename and width and height, pass values of -1 for width and height if you want to use the screen size
+  makescreenshotgame(str, int, int, int) - makes a screenshot without gui, parameters are filename, render bit flags (1 (local player) + 2 (other players) + 4 (npcs) + 8 (particles from removed objects) + 0x10 (weapon showimgs) + 0x20 (daynight effect), or 0x3f for everything), pixelwidth and pixelheight; this is making a screenshot at the player position, see makescreenshot2() if you want to change the offset
+  matrixcreate(str, str) - returns string
+  matrixcreatefromeuler(str) - returns string
+  matrixmulpoint(str, str) - returns string
+  matrixmultiply(str, str) - returns string
+  matrixmulvector(str, str) - returns string
+  md5(str) - returns string - calculates a md5 hash on the specified string
+  noplayerkilling()
+  onwall(float, float) - returns boolean
+  onwall2(float, float, float, float) - returns boolean
+  onwater(float, float) - returns boolean
+  onwater2(float, float, float, float) - returns boolean
+  opengraalurl(str)
+  openurl(str)
+  openurl2(str, int, int)
+  parsejson(obj, str) - parses a JSON string into a script variable, deprecated; use obj.loadJSONFromString(str) instead
+  play(str) - plays a sound file at the player position
+  play2(str, float, float, float) - parameters are sound file, x, y and volume (0..1)
+  play3d(str, bool, str, str) - filename, looped, position and velocity (of format {x,y,z})
+  playlooped(str)
+  playlooped2(str, float, float, float) - plays a sound file looped at x, y and volume (0..1)
+  popdialog()
+  preloadanimation(str) - loads graphics used by an animation and keeps them in memory until a script calls freeAllResources()
+  preloadimage(str, bool) - forces loading of an image and, if the second parameter is true, keeps it in memory until a script calls freeAllResources()
+  pushdialog(obj)
+  putleaps(int, float, float)
+  radtodeg(float) - returns float
+  randomstring(str) - returns string
+  rc4_cipher(str, str) - returns string - encrypts or decrypts data, parameters are the RC4 key and the data
+  removeescapesfromfilename(str) - returns string
+  removetiledefs(str) - parameter is the 'levelstart', removes all tile definitions for levels that start with 'levelstart'
+  replaceani(str, str)
+  requesthttp(str, int, str) - returns object - parameters are host, port and file; on server works only if it's authorized
+  requesttext(str, str) - requests data from the server, must be called by a weapon script
+  requesturl(str) - returns object - requests the content of an URL, the returned object is firing a onReceiveData event; on server works only if it's authorized
+  requesturlasgamefile(str, str, int, bool) - returns object - works similar to redirects in the folder configuration: you can use this function to download files from the web and treat them like files downloaded from the server; parameters are the url, the download filename, modification time (0 for current), and if the you want to force download (true/false), otherwise it will only download if the web server file changed
+  resetfocus()
+  resetimageanimation(str) - sets an image animation (gif or mng) back to the first frame
+  resolvehost(str) - returns string - DNS lookup: resolves the host name (e.g. graalonline.com) to an ipv4 like 1.2.3.4
+  rotationadd(str, str) - returns string
+  rotationaddeuler(str, str) - returns string
+  rotationfromeuler(str) - returns string
+  rotationsub(str, str) - returns string
+  rotationtoeuler(str) - returns string
+  rsa_decrypt(str, str) - returns string - decrypts data, parameters are the private RSA key and the data
+  rsa_encodesignature(str) - returns string - encodes a signature in DER format with SHA1 container (for verification)
+  rsa_encrypt(str, str) - returns string - encrypts data, parameters are the public RSA key and the data
+  rsa_sign(str, str) - returns string - generates a signature, parameters are the private RSA key and the data, the data usual is a hash of the actual data
+  rsa_verify(str, str, str) - returns boolean - verififies a signature, parameters are the public RSA key, the data and the signature
+  rungarbagecollector()
+  savelog(str)
+  say(int)
+  say2(str)
+  screenx(float, float) - returns integer
+  screeny(float, float) - returns integer
+  selectfilefordownload(str) - opens the select-file-dialog for the download location of files (from scripted RC)
+  selectfileforupload() - opens the select-file-dialog for uploading of files (into scripted RC)
+  sendrpgmessage(str)
+  sendtext(str, str, params...) - sends or requests data from the server, must be called by weapon script
+  sendtorc(str)
+  serverwarp(str) - connects to a different server
+  setani(str, str)
+  setbeltcolor(str)
+  setcoatcolor(str)
+  setcontentcontrol(obj) - replaces the main GUI control
+  setcursor2(str)
+  seteffect(float, float, float, float)
+  setfocus(float, float)
+  setgender(str)
+  sethead(str)
+  setletters(str)
+  setminimap(str, str, float, float) - parameters are a text file with level names, the image, default x and y; use gmaps if possible instead of this
+  setmusicvolume(float, float)
+  setplayerdir(str)
+  setshield(str, int)
+  setshoecolor(str)
+  setshootparams(str)
+  setskincolor(str)
+  setsleevecolor(str)
+  setsoundpitch(str, float) - sets the pitch of a sound effect, parameters are filename and pitch, good for looping car sounds, default is 1, good values are between 0.5 and 1.5
+  setsoundpitchbynote(str, str, str) - sets the pitch of a sound depending on base note (e.g. cn1) and the note you want to hear (e.g. an1), notes are an0, as1, bn0, cn0, cs0, dn0, ds0, en0, fn0, fs1, gn0, fs1, an1 etc.
+  setspritesimage(str)
+  setstatusimage(str)
+  setstreamingmode(str) - returns boolean
+  setsword(str, int)
+  sha256(str) - returns string - calculates a sha256 hash on the specified string
+  showstats(int)
+  spyfire(int, int)
+  startrecordvideo() - returns boolean
+  stopmidi() - same as stopmusic(), kept for compatibility
+  stopmusic()
+  stoprecordvideo() - returns boolean
+  stopsound(str) - stops a sound effect
+  stopsounds(bool) - stops all sound effects, as parameter specify if also looping sounds should be stopped
+  strcmp(str, str) - returns integer
+  strequals(str, str) - returns boolean
+  supportsopenglshader() - returns boolean
+  takeplayercarry()
+  takeplayerhorse()
+  testplayer(float, float) - returns integer
+  trace(str) - same as echo()
+  triggeraction(float, float, str, params...)
+  triggerserver(str, str)
+  updateboard(int, int, int, int)
+  updateratingdeviation(float, float) - returns float - old deviation, time of last spar, returns new deviation
+  updateratings(obj) - returns object - updates an array of {rating1,ratingdeviation1, rating2,ratingdeviation2, ...}, init them at 1500 and 350
+  updateterrain()
+  uploadfile(str) - uploads a file, you must provide the full path provided by an onDropFiles() event, also this will only work if the scripted RC has currently a file browser window open; once the file is uploaded an onFilesUploaded event will be invoked
+  uppercase(str) - returns string
+  urldecode(str) - returns string - decode a parameter of a http request (?param)
+  urlencode(str) - returns string - encode a parameter for use in http urls (?param)
+  vectoradd(str, str) - returns string
+  vectorcross(str, str) - returns string
+  vectordist(str, str) - returns float
+  vectordot(str, str) - returns float
+  vectorlen(str) - returns float
+  vectornormalize(str) - returns string
+  vectororthobasis(str) - returns string
+  vectorscale(str, float) - returns string
+  vectorsub(str, str) - returns string
+  worldx(float, float) - returns float
+  worldy(float, float) - returns float
+  wraptext(int, str, str) - returns object
+  wraptext2(int, float, str, str) - returns object
+
+TGraalVar:
+  initialized - boolean (read only)
+  ispaused - boolean - suspends the script if set to paused
+  joinedclasses - object
+  maxlooplimit - integer - sets the maxmimum number of loop iterations, default 10000; the allowed range for this can vary from server to server
+  name - string
+  scripterrors - object (read only) - gives the list of script errors which were reported for this object
+  scriptlogmissingfunctions - boolean
+  timeout - float
+  addarray(obj) - adds another array to this variable
+  addarraymember(str) - returns object - adds an array member with a name and returns the new array member
+  addnamedstring(str, str) - returns object
+  cancelevents(str) - removes all previously scheduled events (scheduleevent) of the specified event name
+  catchevent(str, str, str) - adds an event handler for the specified object and event, third parameter is the function which receives the event (first parameter of the event will be the object for which the event occured)
+  clearemptyvars() - removes empty subvariables from memory
+  clearvars() - clears all dynamic variables
+  copyfrom(obj) - copies all variables and array values from another object, doesn't work for protected variables like players though
+  getarraymember(str) - returns object - searches for an array member by name
+  getdynamicvarnames() - returns object - gets the names of all dynamic (not built-in) subvariables of this object
+  geteditvarnames() - returns object - gets the names of all dynamic variables which can be modified
+  getfunctions() - returns object - gets the names of all functions of the object as array, also each entry has subvariables which give more information about the function ("parameters", "description", "scope")
+  getstaticvarnames() - returns object - gets the names of all static (built-in) subvariables of this object
+  getvarnames() - returns object - gets the names of all subvariables of this object
+  hasfunction(str) - returns boolean - checks if the object has a function of the specified name (also checks if it can be called by the current script object)
+  ignoreevent(str, str) - lets the object ignore an event (second parameter) of the specified object name
+  ignoreevents(str) - lets the object ignore all previously catched events of the specified object name
+  insertarray(int, obj) - inserts an array at the specified index
+  isinclass(str) - returns boolean - checks if the object has joined the specified class
+  join(str) - lets the object join a class and inherit all functions and event handlers of that class
+  leave(str) - leaves a previously joined class
+  loadfolder(str, int) - loads the content of a folder into the variable, you must specify the folder name and pattern (e.g. "levels/bodies/*.png") and if it should be recursive
+  loadini(str) - loads an .ini file into the variable, you can access variables by obj.inisection.varname
+  loadjson(str) - loads an file with json formated data into the variable
+  loadjsonfromstring(str) - loads a json formated string into the variable
+  loadlines(str) - loads a file and adds it line by line to the variable (as array)
+  loadstring(str) - loads the content of a file into the variable
+  loadvars(str) - loads the variables from a file where each line has the format varname=value
+  loadvarsfromarray(obj) - loads the variables from a string list of the format varname=value
+  loadxml(str) - loads an .xml file into the variable (array members with names and text attribute)
+  loadxmlfromstring(str) - loads an xml formated string into the variable (array members with names and text attribute)
+  objecttype() - returns string - returns the object type, which can be TGraalVar, TProjectile etc.
+  savejson(str, int, int) - saves the variable in json format to a file, the second parameter is the save mode (0 - overwrite, 1 - append),  third parameter is the format flags (0 - normal, 1 - beautify: add newlines and indents)
+  savejsontostring(int) - returns string - saves the variable to a json formated string,  parameter is the format flags (0 - normal, +1 - beautify: add newlines and indents, +2 - force strings with comma as array)
+  savelines(str, int) - saves the array line by line into a file, the second parameter is the save mode (0 - overwrite, 1 - append)
+  savestring(str, int) - saves the value as string into a file, the second parameter is the save mode (0 - overwrite, 1 - append)
+  savevars(str, int) - saves the subvars in the format varname=value into a file, the second parameter is the save mode (0 - overwrite, 1 - append)
+  savevarstoarray(bool) - returns object - saves the subvars in the format varname=value into an array, you must specify if it should be sorted
+  savexml(str, int) - saves the variable (array members with names) in xml format to a file, the second parameter is the save mode (0 - overwrite, 1 - append)
+  savexmltostring() - returns string - saves the variable (array members with names) to an xml formated string
+  scheduleevent(float, str, params...) - returns object - invokes an event (onEventname) after the specified delay (in seconds), second parameter is the event name, followed by the parameters
+  settimer(float) - invokes an onTimeout event after the specified time, similar to 'timeout=value'
+  sortascending() - sorts the array in ascending order (smallest value first)
+  sortbyvalue(str, str, bool) - sorts an array, specify the variable of the array members which is compared, also the variable type and if it should be sorted ascending; variable type can be "string", otherwise it is sorted by floating point value
+  sortdescending() - sorts the array in descending order (highest value first)
+  split(str) - returns object - for ActionScript compatibility only: use tokenize() instead
+  subarray2(int, int, int, int) - returns object - extracts a two-dimensional array, specify startpos1, length1, startpos2, length2
+  timershow() - lets an npc show the current timeout variable, deprecated
+  trigger(str, params...) - invokes an event on the object (onEventname) with the specified event name and parameters, doesn't interrupt the current script
+
+  GuiAccordionEntry (TGraalVar):
+    id - integer
+    image - string
+
+  GuiControl (TGraalVar):
+    onAction() event - an action happened (e.g. button pressed)
+    onAdd() event - the control has been added as child to another control
+    onAnimationFinished(str) event - all animations finished, parameter is the last transition type
+    onBecomeFirstResponder() event - the control gains the input focus
+    onDialogPop() event - the control is no longer the dialog control (popDialog())
+    onDialogPush() event - the control is now the dialog control (pushDialog())
+    onDropFiles(int, int, obj) event - files dropped from explorer/finder to the control (acceptdropfiles must be true): x, y, filelist
+    onHide() event - the control is no longer visible on the screen
+    onKeyDown(int, str, int) event - a key has been pressed: keycode, keytext, scancode
+    onKeyUp(int, str, int) event - a key has been released: keycode, keytext, scancode
+    onLoseFirstResponder() event - the control loses the input focus
+    onMouseDown(int, int, int, int) event - mouse click: key modifiers, mouse x and y, click count
+    onMouseDragged(int, int, int, int) event - mouse moved while holding the mouse button down: key modifiers, mouse x and y, click count
+    onMouseEnter(int, int, int, int) event - mouse enters the area of the control: key modifiers, mouse x and y, click count
+    onMouseLeave(int, int, int, int) event - mouse leaves the are of the control: key modifiers, mouse x and y, click count
+    onMouseMove(int, int, int, int) event - mouse moved: key modifiers, mouse x and y, click count
+    onMouseUp(int, int, int, int) event - mouse button released: key modifiers, mouse x and y, click count
+    onMouseWheelDown(int, int, int, int) event - mouse wheel scrolled down: key modifiers, mouse x and y, click count
+    onMouseWheelUp(int, int, int, int) event - mouse wheel scrolled up: key modifiers, mouse x and y, click count
+    onMove(int, int) event - the control has been moved to x, y
+    onRemove() event - the control has been removed from its parent
+    onResize(int, int) event - the control has been resized to width, height
+    onRightMouseDown(int, int, int, int) event - right mouse click: key modifiers, mouse x and y, click count
+    onRightMouseDragged(int, int, int, int) event - mouse moved while holding the right mouse button down: key modifiers, mouse x and y, click count
+    onRightMouseUp(int, int, int, int) event - right mouse button released: key modifiers, mouse x and y, click count
+    onShow() event - the control becomes actually visible on the screen
+    onSleep() event - the control is not part of the screen anymore
+    onStartDrag() event - the user is moving the control
+    onStopDrag(int, int, int, int) event - stopped moving a control: key modifiers, mouse x and y, click count
+    onStyleChanges() event - the GUI style has changed 
+    onWake() event - the control has been added to the screen
+    acceptdropfiles - boolean
+    active - boolean
+    alpha - float
+    areaclickpriority - integer - for iPhone/Android: 2 means you can click it even if not clicking directly on it (buttons), 1 means that nearby buttons are ignored (text field), 0 means a click is only received if you click directly on it and there are no other area-click controls near
+    awake - boolean (read only)
+    bitmapcache - boolean - caches the control and all its sub-controls in a bitmap buffer to speed up drawing when there are a lot of small graphics which don't change often
+    blue - float
+    bounds - string - array of {x,y,width,height}, combination of position and extent
+    canmove - boolean
+    canresize - boolean
+    clientextent - string
+    clientheight - integer
+    clientwidth - integer
+    clipchildren - boolean - by default true; specifies if child controls are clipped to their bounds (text or graphics outside of the bounds will not be shown)
+    clipmove - boolean - when the user moves the control (see canMove) then this makes sure that the control is not moving outside the parents bounds, by default true
+    cliptobounds - boolean - by default true; specifies if the control should be clipped (might be usefull for GuiShowImgCtrl to disable this); this is ignored if parent.clipchildren is already false
+    color - string
+    cursor - string - sets the cursor which is displayed when the mouse hovers over this control, currently supports default, hand/pointer, text, crosshair, drag, col-resize, row-resize, wait, progress, help (also depends on the system)
+    editing - boolean
+    extent - string - width and height of the control
+    fastchildrender - boolean - optimized OpenGL rendering of sub-GuiBitmapCtrls: they must be not tiled, no child-controls, no colors, bitmaprectangle is not supported
+    firstresponder - object - the sub-control which receives keyboard input
+    flickerbasetime - float - if you want to let controls flicker at different time but with the same frequency, then set this to some random value (e.g. random(0,1))
+    flickering - boolean - lets the control automatically show and hide itself in flickertime intervals
+    flickertime - float - says in what interval the control is shown and hidden, in seconds; works only in combination with flickering=true
+    green - float
+    height - integer
+    hint - string - text which is displayed when the user moves the mouse over the control
+    hinttime - float - says after how much time of not moving the mouse the hint should appear
+    horizsizing - string - specifies the horizontal resizing behaviour when the parent control is resized: right, width, left, center or relative
+    isinanimation - boolean
+    isininoutanimation - boolean
+    lockmousedown - boolean - if you click on the control it locks the mouse to this control until released, like a button
+    minextent - string - minimum width and height for the control which should be enforced
+    minsize - string - the same as "minExtent"
+    mode - integer - the control drawing mode (0 - add, 1 - transparent, 2 - subtract, 3 - daynight)
+    parent - object (read only)
+    position - string
+    profile - object
+    red - float
+    resizeheight - boolean
+    resizewidth - boolean
+    rotation - float
+    rotationcenter - string - the current rotation center (default {0,0})
+    scrolllinex - integer - if this is the first control inside a GuiScrollCtrl, then this defines by how many pixel the scroll control is scrolled horizontally when clicking on the left/right scroll bar buttons
+    scrollliney - integer - if this is the first control inside a GuiScrollCtrl, then this defines by how many pixel the scroll control is scrolled vertically when clicking on the up/down scroll bar buttons
+    showhint - boolean - whether the hint should be shown when the user moves the mouse over the control
+    style - string
+    useownprofile - boolean
+    vertsizing - string - specifies the vertical resizing behaviour when the parent control is resized: bottom, height, top, center or relative
+    visible - boolean
+    width - integer
+    x - integer
+    y - integer
+    addcontrol(obj)
+    bringtofront()
+    clearcontrols()
+    createanimation() - returns object - creates an animation object which can be used to animate the position, rotation or color of the control
+    destroy()
+    findcontrol(str) - returns object - finds the control at the specified point {x,y}, e.g. for mouse operations
+    getparent() - returns object
+    globaltolocalcoord(str) - returns string - converts global screen coordinates to a position relative to the controls origin {0,0}, can be used to know where exactly the user has clicked inside a control
+    hide()
+    isactuallyvisible() - returns boolean
+    isfirstresponder() - returns boolean
+    ismouselocked(int) - returns boolean - checks wether the specified mouse (usually 0) has been locked to the control by mouseLock()
+    localtoglobalcoord(str) - returns string - converts a position relative to the controls origin {0,0} to global screen coordinates, can be used to know where on the screen a control is displayed in case it is a child of another control (e.g. GuiWindowCtrl or GuiScrollCtrl)
+    makefirstresponder(bool)
+    mouselock(int) - if you call this, and the mouse leaves the control (onMouseLeave) then you will continue getting onMouseDragged events and you will get an onMouseUp event even when the mouse is currently not in the GUI control rectangle; some GUI controls call this automatically when clicking on the control; parameter is the mouse id, which is usually 0 (fifth parameter of mouse events)
+    mouseunlock(int) - unlocks the mouse from the control, you will only get events when the mouse is inside the GUI control; see mouseLock() for more information
+    mouseunlockall() - unlocks all mouses (multitouch), see mouseLock() for more information
+    pushtoback()
+    repaint() - forces repaint of the whole control (only useful for external windows)
+    resize(int, int, int, int)
+    show()
+    showtop() - calls show(), tabfirst() and bringtofront()
+    sortcontrols() - sorts the sub-controls depending on their y-coordinate
+    startdrag()
+    stopanimations() - stops all previously created animations
+    stopinoutanimations() - stops all animations which move the control in or out of the screen
+    tabfirst() - returns object
+
+    GuiAnimationCtrl (GuiControl):
+      onAnimationEnd(int) event - finished moving: new entry index
+      onAnimationStart(int, int) event - started moving: current entry index, destination entry index
+      animationtime - float
+      selectedrow - integer
+      getselectedrow() - returns integer - row index
+      rowcount() - returns integer
+      setselectedrow(int)
+
+      GuiAccordionCtrl (GuiAnimationCtrl):
+        backgroundimage - string
+        addrow(int) - returns object - parameter is id, returns the added row
+        clearrows()
+        insertrow(int, int) - returns object - parameters are the insert position and id, returns the inserted row
+        removerow(int)
+        removerowbyid(int)
+
+      GuiSlideShowCtrl (GuiAnimationCtrl):
+        isendless - boolean
+        overlayimage - string
+        scrollonvisible - boolean - animates the slides when the control becomes visible
+        addrow(int) - returns object - parameter is id, returns the added row
+        clearrows()
+        insertrow(int, int) - returns object - parameters are the insert position and id, returns the inserted row
+        removerow(int)
+        removerowbyid(int)
+
+    GuiArrayCtrl (GuiControl):
+      onOpenMenu(int, int, int, int) event - right click on an entry: column, row, mouse x and y
+      onSelect(int, int) event - an entry has been selected: column and row
+      allowmultipleselections - boolean
+
+      GuiTextListCtrl (GuiArrayCtrl):
+        onDblClick(int, str, int) event - double click on a list entry: id, text, row
+        onDeleteKey(int, str, int) event - delete key pressed for an entry: id, text, row
+        onIconResized(int, int) event - the size of the icons has been changed: new width and height
+        onMouseOverCell(int, str, int) event - the mouse is hovering over a list entry: id, text, row
+        onOpenMenu(int, str, int) event - right-click on a list entry: id, text, row
+        onSelect(int, str, int) event - a list entry has been selected: id, text, row
+        clipcolumntext - boolean
+        columns - string - array like {0,16}, offset of the tabulators
+        enumerate - boolean
+        fitparentwidth - boolean
+        groupsortorder - string
+        iconheight - integer (read only)
+        iconwidth - integer (read only)
+        resizecell - boolean
+        selected - object (read only)
+        selectedid - integer
+        selectedrow - integer
+        sortcolumn - integer
+        sortmode - string - either "value", "name" or "extension"
+        sortorder - string
+        addrow(int, str) - returns object - the added row
+        clearrows()
+        clearselection()
+        findtext(str) - returns integer - row index
+        findtextid(str) - returns integer - row id
+        getrowatpoint(int, int) - returns integer - row index
+        getrowidatpoint(int, int) - returns integer - row id
+        getrownumbyid(int) - returns integer
+        getselectedid() - returns integer - row id
+        getselectedids() - returns object - array of row ids
+        getselectedrow() - returns integer - row index
+        getselectedrows() - returns object - array of row indices
+        getselectedtext() - returns string
+        insertrow(int, int, str) - returns object - the inserted row
+        isidselected(int) - returns boolean
+        isrowselected(int) - returns boolean
+        makevisible(int)
+        makevisiblebyid(int)
+        removerow(int)
+        removerowbyid(int)
+        rowcount() - returns integer
+        seticonsize(int, int)
+        setrowactivebyid(int, bool)
+        setrowbyid(int, str)
+        setselectedbyid(int)
+        setselectedbyids(str) - set an array of selected row ids; requires allowmultipleselections=true
+        setselectedbytext(str)
+        setselectedrow(int)
+        setselectedrows(str) - set an array of selected row indices; requires allowmultipleselections=true
+        sort()
+
+      GuiTreeViewCtrl (GuiArrayCtrl):
+        onDblClick(obj, str, str) event - double-click on a node: node object, slash-path, dot-path
+        onExpand(obj, str, str) event - a node is expanding: node object, slash-path, dot-path
+        onFold(obj, str, str) event - a node is folded: node object: slash-path, dot-path
+        onIconResized(int, int) event - the size of the icons has been changed: new width and height
+        onMouseOverCell(obj, str, str) event - the mouse is hovering over a node: node object, slash-path, dot-path
+        onOpenMenu(obj, str, str) event - right click on a node: node object, slash-path, dot-path
+        onSelect(obj, str, str) event - a node is selected: node object, slash-path, dot-path
+        boxwidth - integer
+        clipcolumntext - boolean
+        columns - string - of format "0 16", offset of the tabulators
+        expanded - boolean
+        expandedimage - integer
+        expandedselectedimage - integer
+        expandondoubleclick - boolean
+        extent - string (read only)
+        firstlinevisible - boolean
+        fitparentwidth - boolean
+        groupsortorder - string
+        height - integer (read only)
+        hint - string
+        image - integer
+        level - integer (read only)
+        name - string - same as 'text'
+        nodes - object (read only)
+        parent - object (read only)
+        position - string (read only)
+        profile - object
+        selectedimage - integer
+        sortgroup - integer
+        sortmode - string - either "value", "name" or "extension"
+        sortorder - string
+        sortvalue - integer
+        statuswidth - integer
+        text - string
+        useownprofile - boolean
+        visible - boolean
+        width - integer (read only)
+        x - integer (read only)
+        y - integer (read only)
+        addlines(obj, bool)
+        addnode(str) - returns object
+        addnodebypath(str, str) - returns object
+        addvars(obj, bool)
+        clearnodes()
+        clearrows() - same as clearNodes()
+        destroy()
+        getfullname(str) - returns string
+        getnode(str) - returns object
+        getnodeat(int, int) - returns object
+        getnodebypath(str, str) - returns object
+        getselectednode() - returns object
+        select()
+        seticonsize(int, int)
+        sort()
+
+    GuiBitmapBorderCtrl (GuiControl):
+      tile - boolean
+
+    GuiBitmapCtrl (GuiControl):
+      bitmap - string
+      bitmaprectangle - string - by default the full bitmap is drawn: set this to {x,y,width,height} to only draw some part of the image
+      fullbitmap - boolean - if bitmaprectangle has been set then this is false; set this to true to unset the bitmaprectangle
+      tile - boolean - specifies if the bitmap should be repeated (true) or stretched (false)
+      wrap - boolean - same as 'tile', kept for compatibility
+      setbitmap(str)
+      setvalue(int, int) - sets the offset of the image (horizontal and vertical)
+
+    GuiButtonBaseCtrl (GuiControl):
+      buttontype - string
+      checked - boolean
+      groupnum - integer
+      text - string
+      gettext() - returns string
+      settext(str)
+
+      GuiBitmapButtonCtrl (GuiButtonBaseCtrl):
+        mouseoverbitmap - string
+        normalbitmap - string
+        pressedbitmap - string
+        setbitmap(str, int) - parameters are the bitmap and index (0, 1, 2 for normal, mouse over and pressed state)
+
+      GuiButtonCtrl (GuiButtonBaseCtrl):
+        stylesection - string
+        seticonsize(int, int)
+
+      GuiCheckBoxCtrl (GuiButtonBaseCtrl):
+
+        GuiRadioCtrl (GuiCheckBoxCtrl):
+
+    GuiContextMenuCtrl (GuiControl):
+      onCancel() event - the menu has been closed without selecting an entry
+      onSelect(int, str, int) event - a menu entry has been selected: id, text and row
+      clipcolumntext - boolean
+      columns - string - array like {0,16}, offset of the tabulators
+      enumerate - boolean
+      fitparentwidth - boolean
+      groupsortorder - string
+      iconheight - integer (read only)
+      iconwidth - integer (read only)
+      maxpopupheight - integer
+      profile - object
+      resizecell - boolean
+      rows - object (read only)
+      scrollprofile - object
+      selected - object (read only)
+      selectedid - integer
+      selectedrow - integer
+      sortcolumn - integer
+      sortmode - string - either "value", "name" or "extension"
+      sortorder - string
+      textprofile - object
+      width - integer
+      addrow(int, str) - returns object - the added row
+      clearrows()
+      clearselection()
+      close()
+      findtext(str) - returns integer - row index
+      findtextid(str) - returns integer - row id
+      getrowatpoint(int, int) - returns integer - row index
+      getrowidatpoint(int, int) - returns integer - row id
+      getrownumbyid(int) - returns integer
+      getselectedid() - returns integer - row id
+      getselectedids() - returns object - array of row ids
+      getselectedrow() - returns integer - row index
+      getselectedrows() - returns object - array of row indices
+      getselectedtext() - returns string
+      insertrow(int, int, str) - returns object - the inserted row
+      isidselected(int) - returns boolean
+      isopen() - returns boolean
+      isrowselected(int) - returns boolean
+      makevisible(int)
+      makevisiblebyid(int)
+      open(int, int) - opens the menu at the specified screen position, if possible use openAtMouse() instead
+      openatmouse()
+      removerow(int)
+      removerowbyid(int)
+      rowcount() - returns integer
+      seticonsize(int, int)
+      setrowactivebyid(int, bool)
+      setrowbyid(int, str)
+      setselectedbyid(int)
+      setselectedbyids(str) - set an array of selected row ids; requires allowmultipleselections=true
+      setselectedbytext(str)
+      setselectedrow(int)
+      setselectedrows(str) - set an array of selected row indices; requires allowmultipleselections=true
+      sort()
+
+      GuiStartMenuCtrl (GuiContextMenuCtrl):
+        onCancel() event - the menu has been closed without selecting an entry
+        onSelect(int, str, int) event - a menu entry has been selected: id, text and row
+        onTextChanged(str) event - the menu text has been changed
+        text - string
+        width - integer
+        gettext() - returns string
+        settext(str)
+
+    GuiDrawingPanel (GuiControl):
+      availablefilters - object (read only) - available filters for filterrectangle()
+      enablecache - boolean - enables or disables cache, by default true; caching will automatically draw images once they are downloaded
+      parth - integer (read only)
+      partw - integer (read only)
+      partx - integer (read only)
+      party - integer (read only)
+      clearall()
+      clearrectangle(int, int, int, int) - x, y, width and height
+      drawcurve(int, int, int, int, int, int, float) - draws a curve with profile.fontcolor, parameters are x1,y1,x2,y2,x3,y3,linewidth (the curve goes close to x2,y2 but not through it)
+      drawimage(int, int, str) - x, y, source image
+      drawimagerectangle(int, int, str, int, int, int, int) - destination x and y, source image, source x,y,width and height
+      drawimagestretched(int, int, int, int, str, int, int, int, int) - destination x,y,width and height, source image, source x,y,width and height
+      drawline(int, int, int, int, float) - draws a line with profile.fontcolor, parameters are x1,y1,x2,y2,linewidth
+      drawobject(int, int, obj) - destination x and y, object to draw (e.g. player)
+      drawtext(int, int, str) - draws text with the current profile, parameters are x, y and the text to draw
+      filterrectangle(int, int, int, int, str) - returns boolean - applys a filter (x,y,width,height,filter type), possible filter types are gray, nightgoggle, negative, updown, blackwhite and lesscolors
+      maskimage(int, int, str, str) - draws an image (x,y,filename) on top with a special mask operation (add or multiply)
+      saveimage(str)
+      saveimage2(str, int) - saves the drawing panel under the specified filename, second parameter is the bitdepth (24 or 32)
+      setdrawpalette(str, int) - sets a palette to use for later drawing operations, parameters are {color0,color1,...} and the index of the transparent color
+
+    GuiFlash (GuiControl):
+      backgroundalpha - float
+      downloadwebfiles - boolean
+      flash - object (read only) - gives access to the flash resources
+      hideonoverlap - boolean
+      loopmovie - boolean
+      messageonoverlap - string
+      moviename - string
+      loadmovie(str, bool, float)
+      playmovie()
+      restartmovie()
+      setbackgroundalpha(float)
+      setlooping(bool)
+      stopmovie()
+
+    GuiFrameSetCtrl (GuiControl):
+      autobalance - boolean
+      bordercolor - string
+      borderenable - string
+      bordermovable - string
+      borderwidth - integer
+      columncount - integer
+      fudgefactor - integer
+      minextent - string
+      rowcount - integer
+      getcolumncount() - returns integer
+      getcolumnoffset(int) - returns integer
+      getrowcount() - returns integer
+      getrowoffset(int) - returns integer
+      setcolumncount(int)
+      setcolumnoffset(int, int)
+      setrowcount(int)
+      setrowoffset(int, int)
+
+    GuiGraalCtrl (GuiControl):
+      isrendering - boolean - says if the game is rendered, set to false if you want to only show GUI and not the tiles and players
+
+    GuiMenuCtrl (GuiControl):
+      onCancel() event - the menu has been closed without selecting a menu entry
+      onIconResized(int, int) event - the size of the icons has been changed: new width and height
+      onSelect(str, int, str, int) event - a menu item has been selected: menu name, selection id, text and row
+      iconheight - integer (read only)
+      iconwidth - integer (read only)
+      addmenu(str) - returns object
+      clearmenus()
+      findmenu(str) - returns object
+      removemenu(str)
+      seticonsize(int, int)
+
+    GuiMLTextCtrl (GuiControl):
+      onCursorLineChanged(int) event - cursor moved: new line number
+      onReflow(int, int) event - the displayed content changed: new visible width and height
+      onRightSelectTag(str) event - right click on: tag id
+      onSelectTag(str) event - the user clicked on a tag or bitmap: tag id
+      onURL(str) event - the user clicked on an url
+      allowedtags - string
+      alpha - float
+      cursorposition - integer - cursor position in the text
+      deniedsound - string
+      disallowedtags - string
+      htmlcompatibility - boolean
+      htmllinks - boolean - will automatically open a webbrowser when clicking on a link if you don't want to do it yourself by handling onURL() events via script
+      maxchars - integer
+      parsetags - boolean
+      plaintext - string - the text of the control without character escaping
+      syntaxhighlighting - boolean
+      text - string
+      urlbase - string
+      wordwrap - boolean - says if it should wrap text instead of growing or shrinking to fit the text
+      addtext(str, bool)
+      deselecttext() - deselects any currently selected text
+      findtext(str, int) - returns integer - searches for a sub string in the current text, returns the position if found, otherwise -1; second parameter are flags: 1 (wrap at text end) + 2 (case sensitive)
+      findtextat(str, int, int) - returns integer - searches for a sub string in the current text starting at the specified position, returns the position of the next match if found, otherwise -1; thirdparameter are flags: 1 (wrap at text end) + 2 (case sensitive)
+      getcolumnandlineofposition(int) - returns string - returns {column, line} of the specified position in the text
+      getcursorline() - returns integer
+      getline(int) - returns string
+      getlinecount() - returns integer
+      getlines() - returns object - array of lines
+      getselectedlength() - returns integer - returns the length of the current selection, -1 if there is none
+      getselectedposition() - returns integer - returns the position of the current selection, -1 if there is none
+      gettext() - returns string
+      reflow() - calculates the position of the text elements on the screen, this is automatically done before rendering
+      replacetext(str, str, int) - returns integer - parameters are old text and new text; replaces all occurences of old text with new text, returns how many replacements were done; thirdparameter are flags: 2 (case sensitive)
+      scrolltobottom()
+      scrolltoline(int)
+      scrolltoposition(int)
+      scrolltotag(str)
+      scrolltotop()
+      selecttext(int, int) - returns boolean - parameters are position and length of text to select, returns if it successfully selected it
+      setcursorcolumnandline(int, int)
+      setlines(obj)
+      settext(str)
+      trimhorizontally() - when you only have centered text then this is removing the space on the left and right side
+
+      GuiMLTextEditCtrl (GuiMLTextCtrl):
+        autoindenting - boolean - when pressing the return key, then it's automatically inserting the same number of spaces in front of the new line as in the previous line
+        showcursor - boolean
+        tabspaces - integer - when the user presses the tab key then this number of spaces are inserted, by default the tab key is ignored
+        undostacksize - integer - number of undo operations (default 16)
+
+        GuiPMEditCtrl (GuiMLTextEditCtrl):
+          clear()
+          sendmasspm(obj)
+          sendpm(obj)
+
+      GuiPMCtrl (GuiMLTextCtrl):
+        addpm(obj) - adds the received pm from the specified player to the text of this control
+        clear()
+        showpm(obj) - replaces the text with the received pm from this player
+
+      GuiPMHistoryCtrl (GuiMLTextCtrl):
+        showhistory(obj)
+
+    GuiProgressCtrl (GuiControl):
+      progress - float
+
+    GuiScrollCtrl (GuiControl):
+      onScrolled(int, int, int, int) event - visible area scrolled: new x and y, delta x and y
+      childmargin - string
+      constantthumbheight - boolean
+      hscrollbar - string
+      scrollpos - string
+      tile - boolean
+      vscrollbar - string
+      wheelscrolllines - integer
+      willfirstrespond - boolean
+      scrolldelta(int, int)
+      scrollrectvisible(int, int, int, int)
+      scrollto(int, int)
+      scrolltobottom() - scrolls to the button, simply calls scrollto(0, 0x7fffffff)
+      scrolltotop() - scrolls to the top, simply calls scrollto(0, 0)
+
+    GuiShowImgCtrl (GuiControl):
+      actor - object (read only)
+      alpha - float
+      angle - float - particle movement angle
+      ani - string
+      ani - string
+      attachoffset - string
+      attachtoowner - boolean
+      blue - float
+      code - string - the old representation as 'font@style@text'
+      dimension - integer
+      dir - integer
+      dir - integer
+      emitter - object (read only)
+      flashfile - string
+      font - string
+      green - float
+      height - float
+      image - string
+      imageindex - integer (read only)
+      layer - integer
+      layer - integer
+      lifetime - float - particle lifetime
+      mode - integer - the image drawing mode (0 - add, 1 - transparent, 2 - subtract, 3 - daynight)
+      movementvector - string - particle movement vector (angle + zangle + speed)
+      offsetx - integer
+      offsety - integer
+      parth - integer
+      partw - integer
+      partx - integer
+      party - integer
+      playerlook - boolean - if the animation should take it's head, body, sword, shield and attr[] from the owner (playerlook), set this to false if you want to set the images yourself by changing showimg.actor.head etc.
+      polygon - object
+      position - string
+      red - float
+      rotation - float
+      rotationcenter - string - the current rotation center (only works when useowncenter=true)
+      shadowcolor - string
+      shadowoffset - string
+      sound - string - particle sound
+      speed - float - particle movement speed
+      spin - float
+      stretchx - float
+      stretchy - float
+      style - string
+      text - string
+      textshadow - boolean
+      uniqueparticle - boolean - says if each particle should store it's own data (good for text emitters)
+      useowncenter - boolean - by default the showimg is rotated around the image center, set this to true and set rotationcenter for custom rotations
+      width - float
+      x - float
+      y - float
+      z - float
+      zangle - float - particle movement zangle
+      zoom - float
+
+    GuiSliderCtrl (GuiControl):
+      onAction(float) event - the slider value has been changed (by script or user): new slider value
+      onReleaseSlider(float) event - the user has finishzed moving the slider: new slider value
+      range - string
+      ticks - integer
+      value - float
+
+    GuiStretchCtrl (GuiControl):
+      clientextent - string
+      clientheight - integer
+      clientwidth - integer
+
+    GuiTabCtrl (GuiControl):
+      onDeselect(int, str, int) event - a tab is no longer selected: id, text, row
+      onIconResized(int, int) event - the size of the icons has been changed: new width and height
+      onMouseOverCell(int, str, int) event - the mouse is hovering over a tab: id, text, row
+      onOpenMenu(int, int, int) event - the user has clicked with the right mouse button on an entry: row, mouse x and y
+      onSelect(int, str, int) event - a tab has been selected: id, text, row
+      iconheight - integer (read only)
+      iconwidth - integer (read only)
+      leveling - integer
+      maxvisibletabs - integer (read only)
+      overlapwidth - integer
+      selected - object (read only)
+      tabwidth - integer
+      addrow(int, str) - returns object - the added row
+      clearrows()
+      clearselection()
+      findtext(str) - returns integer - row index
+      findtextid(str) - returns integer - row id
+      getrowatpoint(int, int) - returns integer - row index
+      getrowidatpoint(int, int) - returns integer - row id
+      getrownumbyid(int) - returns integer
+      getselectedid() - returns integer - row id
+      getselectedrow() - returns integer - row index
+      getselectedtext() - returns string
+      insertrow(int, int, str) - returns object - the inserted row
+      isidselected(int) - returns boolean
+      isrowselected(int) - returns boolean
+      makevisible(int)
+      makevisiblebyid(int)
+      removerow(int)
+      removerowbyid(int)
+      rowcount() - returns integer
+      seticonsize(int, int)
+      setselectedbyid(int)
+      setselectedrow(int)
+
+    GuiTaskbar (GuiControl):
+
+    GuiTextCtrl (GuiControl):
+      onTextChanged(str) event - text has been changed
+      maxchars - integer - max length, default 255, set to 0 for unlimited
+      stylesection - string - if set to Clock then it will use Taskbar.Clock TextColour from the gui style
+      text - string
+      gettext() - returns string
+      settext(str)
+
+      GuiPopUpEditCtrl (GuiTextCtrl):
+        onCancel() event - the menu has been closed without selecting an entry
+        onSelect(int, str, int) event - a menu entry has been selected: id, text and row
+        clipcolumntext - boolean
+        columns - string - array like {0,16}, offset of the tabulators
+        enumerate - boolean
+        fitparentwidth - boolean
+        groupsortorder - string
+        iconheight - integer (read only)
+        iconwidth - integer (read only)
+        maxpopupheight - integer
+        maxpopupheight - integer
+        profile - object
+        resizecell - boolean
+        rows - object (read only)
+        scrollprofile - object
+        selected - object (read only)
+        selectedid - integer
+        selectedrow - integer
+        sortcolumn - integer
+        sortmode - string - either "value", "name" or "extension"
+        sortorder - string
+        textprofile - object
+        width - integer
+        addrow(int, str) - returns object - the added row
+        addtext(str, int) - deprecated, use addRow() instead
+        clearrows()
+        clearselection()
+        close()
+        findtext(str) - returns integer
+        findtext(str) - returns integer - row index
+        findtextid(str) - returns integer - row id
+        forceclose()
+        forceonaction()
+        getrowatpoint(int, int) - returns integer - row index
+        getrowidatpoint(int, int) - returns integer - row id
+        getrownumbyid(int) - returns integer
+        getselected() - returns integer
+        getselectedid() - returns integer - row id
+        getselectedids() - returns object - array of row ids
+        getselectedrow() - returns integer - row index
+        getselectedrows() - returns object - array of row indices
+        getselectedtext() - returns string
+        insertrow(int, int, str) - returns object - the inserted row
+        isidselected(int) - returns boolean
+        isopen() - returns boolean
+        isrowselected(int) - returns boolean
+        makevisible(int)
+        makevisiblebyid(int)
+        open(int, int) - opens the menu at the specified screen position, if possible use openAtMouse() instead
+        openatmouse()
+        removerow(int)
+        removerowbyid(int)
+        rowcount() - returns integer
+        rowcount() - returns integer
+        seticonsize(int, int)
+        setrowactivebyid(int, bool)
+        setrowbyid(int, str)
+        setselected(int)
+        setselectedbyid(int)
+        setselectedbyids(str) - set an array of selected row ids; requires allowmultipleselections=true
+        setselectedbytext(str)
+        setselectedbytext(str)
+        setselectedrow(int)
+        setselectedrows(str) - set an array of selected row indices; requires allowmultipleselections=true
+        sort()
+
+      GuiPopUpMenuCtrl (GuiTextCtrl):
+        onCancel() event - the menu has been closed without selecting an entry
+        onSelect(int, str, int) event - a menu entry has been selected: id, text and row
+        clipcolumntext - boolean
+        columns - string - array like {0,16}, offset of the tabulators
+        enumerate - boolean
+        fitparentwidth - boolean
+        groupsortorder - string
+        iconheight - integer (read only)
+        iconwidth - integer (read only)
+        maxpopupheight - integer
+        profile - object
+        resizecell - boolean
+        rows - object (read only)
+        rows - object (read only)
+        scrollprofile - object
+        selected - object (read only)
+        selectedid - integer
+        selectedrow - integer
+        sortcolumn - integer
+        sortmode - string - either "value", "name" or "extension"
+        sortorder - string
+        textprofile - object
+        width - integer
+        addrow(int, str) - returns object - the added row
+        addtext(str, int) - deprecated, use addRow() instead
+        clearrows()
+        clearselection()
+        close()
+        findtext(str) - returns integer
+        findtext(str) - returns integer - row index
+        findtextid(str) - returns integer - row id
+        forceclose()
+        forceonaction()
+        getrowatpoint(int, int) - returns integer - row index
+        getrowidatpoint(int, int) - returns integer - row id
+        getrownumbyid(int) - returns integer
+        getselected() - returns integer
+        getselectedid() - returns integer - row id
+        getselectedids() - returns object - array of row ids
+        getselectedrow() - returns integer - row index
+        getselectedrows() - returns object - array of row indices
+        getselectedtext() - returns string
+        insertrow(int, int, str) - returns object - the inserted row
+        isidselected(int) - returns boolean
+        isopen() - returns boolean
+        isrowselected(int) - returns boolean
+        makevisible(int)
+        makevisiblebyid(int)
+        open(int, int) - opens the menu at the specified screen position, if possible use openAtMouse() instead
+        openatmouse()
+        removerow(int)
+        removerowbyid(int)
+        rowcount() - returns integer
+        rowcount() - returns integer
+        seticonsize(int, int)
+        setrowactivebyid(int, bool)
+        setrowbyid(int, str)
+        setselected(int)
+        setselectedbyid(int)
+        setselectedbyids(str) - set an array of selected row ids; requires allowmultipleselections=true
+        setselectedbytext(str)
+        setselectedbytext(str)
+        setselectedrow(int)
+        setselectedrows(str) - set an array of selected row indices; requires allowmultipleselections=true
+        sort()
+
+      GuiTextEditCtrl (GuiTextCtrl):
+        onAction(str) event - a text has been entered (return key pressed)
+        onTabComplete(bool) event - the tab key has been pressed (with or without shift key)
+        deniedsound - string
+        historysize - integer
+        inputtype - string - either password or default, on mobile devices also email,url and numbers
+        password - boolean
+        showcursor - boolean
+        tabcomplete - boolean
+        text - string
+        setselection(int, int)
+        undo()
+
+        GuiAccountPasswordCtrl (GuiTextEditCtrl):
+          applypassword()
+          clearpassword()
+          isempty() - returns boolean
+          setpasswordofaccount(str)
+
+        GuiTextEditSliderCtrl (GuiTextEditCtrl):
+          allowedit - string
+          format - string
+          increment - float
+          range - string
+          value - float
+
+      GuiWindowCtrl (GuiTextCtrl):
+        onCloseQuery() event - the player clicked on the close button and closequery=true
+        onTextChanged(str) event - the window title has been changed
+        canclose - boolean
+        canmaximize - boolean
+        canminimize - boolean
+        clientrelative - boolean - by default false; if enabled then sub-controls are positioned automatically to not overlap the header or the borders; use clientwidth and clientheight to get the available space for sub-controls
+        closequery - boolean
+        destroyonhide - boolean
+        dockable - boolean
+        extent - string
+        externalwindow - object (read only) - the external window object, can be used to manipulate the OS window
+        isexternal - boolean
+        istoolwindow - boolean - says if the external window should have a smaller caption
+        maximized - boolean
+        minimized - boolean
+        showontaskbar - boolean - adds a taskbar button for the external window, on Windows
+        tile - boolean
+        isactivewindow() - returns boolean - checks if the window is active (the top window)
+
+    GuiTilesCtrl (GuiControl):
+      camerabounds - string
+      cameraposition - string
+      camerasize - string
+      tilemap - object (read only)
+      loadtilemap(str, str) - returns object
+      loadtilemapxml(str) - returns object
+
+  GuiControlProfile (TGraalVar):
+    align - string
+    autosizeheight - boolean
+    autosizewidth - boolean
+    backgroundinset - string
+    bitmap - string
+    border - integer
+    bordercolor - string
+    bordercolorhl - string
+    bordercolorna - string
+    borderthickness - integer
+    boxextent - string - the size of checkboxes, for GuiCheckBoxCtrl
+    cankeyfocus - boolean
+    cursorcolor - string
+    fillcolor - string
+    fillcolorhl - string
+    fillcolorna - string
+    fillonlynonchildarea - boolean - when opaque is true, then fill only the part of the control that is not covered by child controls
+    focusonshow - boolean
+    fontcolor - string
+    fontcolorhl - string
+    fontcolorlink - string
+    fontcolorlinkhl - string
+    fontcolorna - string
+    fontcolorsel - string
+    fontsize - integer
+    fontstyle - string
+    fontstylecontrolwords - string
+    fontstyleidentifiers - string
+    fontstylenumbers - string
+    fontstylestrings - string
+    fonttype - string
+    gradientcolor - string
+    justify - string - the same like "align"
+    linespacing - integer
+    modal - boolean
+    mouseoverselected - boolean
+    numbersonly - boolean - only allow entering of numbers into a GuiTextEditCtrl
+    opaque - boolean
+    overridestylefont - boolean - set to true of you want to replace the GUI style font attributes
+    returntab - boolean
+    shadowcolor - string
+    shadowoffset - string
+    soundbuttondown - string
+    soundbuttonover - string
+    tab - boolean
+    textgradient - boolean
+    textoffset - string
+    textshadow - boolean
+    transparency - float
+    gettextheight() - returns integer - get the text height when displayed with the profile font
+    gettextwidth(str) - returns integer - get the width of text when displayed with the profile font
+    preloadfont() - preloads the profile font and keeps it in memory until a script calls freeAllResources()
+
+  GuiCursor (TGraalVar):
+
+  GuiSlideShowEntry (TGraalVar):
+    id - integer
+    image - string
+
+  GuiTabCtrlEntry (TGraalVar):
+    hint - string
+    id - integer
+    text - string
+    gettext() - returns string
+    settext(str)
+
+  GuiTextListEntry (TGraalVar):
+    active - boolean
+    extent - string (read only)
+    flickering - boolean - lets the entry automatically show and hide itself in flickertime intervals
+    flickertime - float - says in what interval the entry is shown and hidden, in seconds; works only in combination with flickering=true
+    height - integer (read only)
+    hint - string
+    id - integer
+    image - integer
+    position - string (read only)
+    profile - object
+    selectedimage - integer
+    sortgroup - integer
+    sortvalue - integer
+    text - string
+    useownprofile - boolean
+    width - integer (read only)
+    x - integer (read only)
+    y - integer (read only)
+    gettext() - returns string
+    settext(str)
+
+  GuiTreeViewNode (TGraalVar):
+    expanded - boolean
+    expandedimage - integer
+    expandedselectedimage - integer
+    extent - string (read only)
+    height - integer (read only)
+    hint - string
+    image - integer
+    level - integer (read only)
+    name - string - same as 'text'
+    parent - object (read only)
+    position - string (read only)
+    profile - object
+    selectedimage - integer
+    sortgroup - integer
+    sortvalue - integer
+    text - string
+    useownprofile - boolean
+    visible - boolean
+    width - integer (read only)
+    x - integer (read only)
+    y - integer (read only)
+    addlines(obj, bool)
+    addnode(str) - returns object
+    addnodebypath(str, str) - returns object
+    addvars(obj, bool)
+    clearnodes()
+    destroy()
+    getfullname(str) - returns string
+    getnode(str) - returns object
+    getnodebypath(str, str) - returns object
+    select()
+
+  MovieClip (TGraalVar):
+    onEnterFrame() event - frame tick
+    onInitFrame() event - the movie clip switched to a new frame
+    onKeyDown() event - a key has been pressed
+    onKeyUp() event - a key has been released
+    onMouseDown() event - mouse click
+    onMouseMove() event - mouse moved
+    onMouseUp() event - mouse button released
+    onPress() event - mouse click on a button clip
+    onRelease() event - mouse button released on a button clip
+    _level0 - object (read only)
+    _name - string (read only)
+    _parent - object (read only)
+    _root - object (read only)
+    _rotation - float
+    _visible - boolean
+    _x - float
+    _xmouse - float (read only)
+    _xscale - float
+    _y - float
+    _ymouse - float (read only)
+    _yscale - float
+    alpha - float
+    blue - float
+    frame - integer
+    framecount - integer (read only)
+    green - float
+    height - float (read only)
+    key - object (read only)
+    layerdepths - object (read only)
+    layernames - object (read only)
+    looping - boolean
+    math - object (read only)
+    objectname - string
+    objectnames - object (read only)
+    playing - boolean
+    red - float
+    stage - object (read only)
+    width - float (read only)
+    attachmovie(params...) - returns object - parameters are the movie clip to copy, the name of the new clip, and the layer
+    clearinterval(obj)
+    createemptymovieclip(str, int) - returns object - parameters are the the name of the new clip and the layer
+    duplicatemovieclip(params...) - returns object
+    getbounds(obj) - returns object
+    getbytesloaded() - returns integer
+    getbytestotal() - returns integer
+    getcolor() - returns string
+    getdepth() - returns integer
+    getinstanceatdepth(int) - returns object
+    getlayer(str) - returns object
+    getnexthighestdepth() - returns integer
+    getproperty(int) - returns string
+    gettimer() - returns integer
+    globaltolocal(obj)
+    gotoandplay(params...) - specify the frame name or frame number
+    gotoandstop(params...) - specify the frame name or frame number
+    hittest(params...) - returns boolean
+    localtoglobal(obj)
+    nextframe()
+    play()
+    prevframe()
+    removelayer(str)
+    removemovieclip()
+    setcolor(str)
+    setinterval(obj, str, int) - returns object
+    setmask(obj)
+    setproperty(int, str)
+    startdrag()
+    stop()
+    stopdrag()
+    swapdepths(str)
+    unloadmovie() - same as removeMovieClip()
+    updateafterevent()
+
+  Stage (TGraalVar):
+    height - float (read only)
+    width - float (read only)
+    stage(params...) - returns object
+
+  TCallStackEntry (TGraalVar):
+    scriptcallobject - object (read only)
+
+  TControlBinding (TGraalVar):
+    action - integer (read only)
+    keycode - integer (read only)
+    keytext - string (read only)
+    slot - integer (read only)
+
+  TDoubleArrayVar (TGraalVar):
+
+  TDrawingPanel (TGraalVar):
+    availablefilters - object (read only) - available filters for filterrectangle()
+    enablecache - boolean - enables or disables cache, by default true; caching will automatically draw images once they are downloaded
+    height - integer (read only)
+    isclear - boolean (read only)
+    parth - integer (read only)
+    partw - integer (read only)
+    partx - integer (read only)
+    party - integer (read only)
+    profile - object
+    useownprofile - boolean
+    width - integer (read only)
+    clearall()
+    clearrectangle(int, int, int, int) - x, y, width and height
+    drawcurve(int, int, int, int, int, int, float) - draws a curve with profile.fontcolor, parameters are x1,y1,x2,y2,x3,y3,linewidth (the curve goes close to x2,y2 but not through it)
+    drawimage(int, int, str) - x, y, source image
+    drawimagerectangle(int, int, str, int, int, int, int) - destination x and y, source image, source x,y,width and height
+    drawimagestretched(int, int, int, int, str, int, int, int, int) - destination x,y,width and height, source image, source x,y,width and height
+    drawline(int, int, int, int, float) - draws a line with profile.fontcolor, parameters are x1,y1,x2,y2,linewidth
+    drawobject(int, int, obj) - destination x and y, object to draw (e.g. player), on server-side only npc with images accepted right now
+    drawtext(int, int, str) - draws text with the current profile, parameters are x, y and the text to draw
+    filterrectangle(int, int, int, int, str) - returns boolean - applys a filter (x,y,width,height,filter type), possible filter types are gray, nightgoggle, negative, updown, blackwhite and lesscolors
+    maskimage(int, int, str, str) - returns boolean - draws an image (x,y,filename) on top with a special mask operation (add or multiply), returns true if the operation was executed
+    saveimage(str) - saves the drawing panel under the specified filename
+    saveimage2(str, int) - saves the drawing panel under the specified filename, second parameter is the bitdepth (24 or 32)
+    saveimagetostring(str) - returns string - returns the raw image data, parameter is a filename to specify the image type (.png, .jpg, .bmp)
+    saveimagetostring2(str, int) - returns string - returns the raw image data, parameter is a filename to specify the image type (.png, .jpg, .bmp), second parameter is the bitdepth (24 or 32)
+    setdrawpalette(str, int) - sets a palette to use for later drawing operations, parameters are {color0,color1,...} and the index of the transparent color
+
+  TFrameDetail (TGraalVar):
+    bordercolor - string
+    borderenable - string
+    bordermovable - string
+    borderwidth - integer
+    minextent - string
+
+  TGaniParam (TGraalVar):
+
+  TGraalAni (TGraalVar):
+    continuous - boolean
+    ganitype - string (read only)
+    loop - boolean
+    movie - boolean
+    setbackto - string
+    singledirection - boolean (read only)
+
+  TGraalClientVar (TGraalVar):
+
+  TGUIAnimation (TGraalVar):
+    alpha - float - can be used in "transform" transitions
+    amplitude - float - amplitude for moveupdown, moveleftright and zoominout
+    bounds - string - array of {x,y,width,height}, can be used in "transform" transitions
+    currenttime - float
+    delay - float - the animation starts after the specified number of seconds
+    duration - float - the animation will last the specified number of seconds
+    interval - float - interval for moveupdown, moveleftright and zoominout
+    rotation - float - can be used in "transform" transitions
+    sound - string - plays a sound when the animation starts
+    tabfirstonshow - boolean - calls tabfirst() after showing the control, by default true
+    timing - string - timing function: 'linear' or 'sinus', sinus is for smooth transitions
+    transition - string - specifies the animation type: transform, fadeout, fadein, moveoutleft, moveinleft, moveoutright, moveinright, moveouttop, moveintop, moveoutbottom, moveinbottom, moveupdown, moveleftright, flipoutleft, flipinleft, flipoutright, flipinright, zoomin, zoomout, zoominout, growin, growout, shrinkin, shrinkout, rotateoutleft, rotateinleft, rotateoutright, rotateinright
+
+  THTTPRequest (TGraalVar):
+    onReceiveData() event - request finished, received data
+    address - string (read only)
+    allowredirectext - boolean - if using requestURLAsGameFile and the file is redirected, allow it to use the redirected file extension (enabled by default)
+    contentlanguage - string (read only)
+    contentlength - integer (read only)
+    contenttype - string (read only)
+    downloadcomplete - boolean (read only)
+    file - string (read only)
+    fulldata - string (read only)
+    gamefile - string (read only) - the data will be saved as gamefile under this filename
+    lastdatatime - float (read only) - time when data has been received by the HTTP server
+    lastmodified - string (read only)
+    location - string (read only) - the redirection location
+    port - integer (read only)
+    returncode - integer (read only)
+    returnmessage - string (read only)
+    server - string (read only)
+    url - string (read only)
+
+  TLevelObject (TGraalVar):
+    layer - integer (read only)
+    level - object (read only)
+    x - float
+    y - float
+    z - float
+
+    TBaddy (TLevelObject):
+      dir - integer
+      headdir - integer
+      mode - integer
+      power - integer
+      type - integer
+
+    TExplosion (TLevelObject):
+      dir - integer (read only)
+      power - integer (read only)
+      time - float (read only)
+
+    TGaniObject (TLevelObject):
+      alpha - float
+      ani - object
+      aniparams - string (read only)
+      anistep - integer (read only)
+      attachedtoobject - object (read only)
+      attachid - integer (read only)
+      attachtype - integer (read only)
+      attr - object (read only)
+      blue - float
+      body - string
+      bodyimg - string
+      colors - object (read only)
+      dir - integer
+      gmap - object (read only)
+      green - float
+      head - string
+      headimg - string
+      mode - integer - the object drawing mode (0 - add, 1 - transparent, 2 - subtract, 3 - daynight)
+      red - float
+      rotation - float
+      rotationcenter - string - the current rotation center (only works when useowncenter=true)
+      shield - string
+      sprite - integer
+      stretchx - float
+      stretchy - float
+      sword - string
+      useowncenter - boolean - by default the object is rotated around the image center, set this to true and set rotationcenter for custom rotations
+      zoom - float
+      setcoloreffect(float, float, float, float) - sets red, green, blue and alpha value of the object (values between 0 and 1)
+      seteffectmode(int) - sets the object drawing mode (0 - add, 1 - transparent, 2 - subtract, 3 - daynight)
+
+      TProjectile (TGaniObject):
+        angle - float (read only)
+        fromplayer - object (read only)
+        fromplayerid - integer (read only)
+        horiz - boolean (read only)
+        params - object (read only)
+        speed - float (read only)
+        x - float (read only)
+        y - float (read only)
+        z - float (read only)
+        zspeed - float (read only)
+
+      TServerHorse (TGaniObject):
+        bombpower - integer
+        bombs - integer
+        bushes - integer
+        dir - integer
+        type - integer
+
+      TServerPlayer (TGaniObject):
+        account - string (read only)
+        ap - integer
+        attached - boolean (read only)
+        attachedtoobject - object
+        bombs - integer
+        chat - string
+        chatoffset - string - set to {deltax,deltay} if you want to change the position of chat and emoticons for bigger characters; chat only uses deltay
+        communityname - string (read only)
+        darts - integer
+        fullhearts - integer (read only)
+        glovepower - integer
+        gralats - integer
+        guild - string (read only)
+        head - string
+        headimg - string
+        headset - integer
+        hearts - float (read only)
+        horseimg - string
+        hp - float (read only)
+        id - integer (read only)
+        isadmin - boolean (read only)
+        isblocking - boolean - makes the player blocking or non-blocking on the current client only
+        isbuddy - boolean
+        ischannel - boolean (read only)
+        ischannelopen - boolean (read only)
+        ischanneluser - boolean (read only)
+        isexternal - boolean (read only)
+        isfemale - boolean (read only)
+        isignored - boolean
+        isignoring - boolean (read only)
+        isloggedin - boolean (read only)
+        ismale - boolean (read only)
+        language - string (read only)
+        languagedomain - string (read only)
+        levelname - string (read only) - the name of the level where the player is currently in, even if it has not been loaded yet
+        mapicon - object (read only) - of type TDrawingPanel, this is the icon that appears on the mini-map, usually updated by the playerlist script
+        maxhp - integer (read only)
+        messagebubble - integer (read only)
+        mp - integer
+        nick - string
+        paused - boolean
+        platform - string (read only)
+        playerlisticon - integer (read only)
+        playersindex - integer (read only)
+        rating - float (read only)
+        ratingd - float (read only)
+        rupees - integer - better use 'gralats'
+        shieldimg - string - only there for compatibility with GS1, use just 'shield' instead
+        shieldpower - integer (read only)
+        swordimg - string - only there for compatibility with GS1, use just 'sword' instead
+        swordpower - integer (read only)
+        x - float
+        y - float
+        isguildpm() - returns boolean
+        ismasspm() - returns boolean
+        openexternalhistory() - returns boolean
+        openexternalpm(bool) - returns boolean - as parameter specify 'true' if it should display the pm sent by the player, otherwise always open a blank PM window
+        pmswaiting() - returns boolean
+        showprofile()
+
+        TPlayer (TServerPlayer):
+          alliedguilds - string - list of guilds which don't hurt the player
+          ap - integer
+          camerasize - string - camera size when using the new tile maps
+          chat - string
+          defaultwalkspeed - float - specifies the speed of the default movement (by default 0.5)
+          diagonalwalkspeed - float - diagonal movement speed factor, default 1.0, set to 0.5^0.5 to make the player move in the same speed diagonally as horizontally and vertically
+          freezetime - float
+          hearts - float
+          horseimg - string
+          hp - float
+          hurt - boolean (read only)
+          hurtdx - float (read only)
+          hurtdy - float (read only)
+          hurted - boolean (read only)
+          hurtpower - float (read only)
+          isfemale - boolean (read only)
+          isinvincible - boolean - makes the player invincible for classic hits
+          isinvincible2 - boolean - makes the player invincible even for bombs and lava
+          isjumping - boolean (read only)
+          ismale - boolean (read only)
+          isobserver - boolean (read only)
+          letters - string
+          map - boolean (read only)
+          nick - string (read only)
+          onhorse - boolean (read only)
+          online - boolean (read only)
+          paused - boolean
+          playerlisticon - integer
+          reading - boolean (read only)
+          shield - string
+          shieldimg - string - same as 'shield'
+          sprite - integer
+          swimming - boolean (read only)
+          sword - string
+          swordimg - string - same as 'sword'
+          tilemap - object (read only) - the current tile map when using new tile maps
+          weapon - object (read only)
+          weapons - object (read only)
+          zoomfactor - float - the zoom factor set by Alt+8/9
+          findweapon(str) - returns object
+          getnohit(str) - returns integer - checks if the player can be hurt, returns an error code
+          hideemoticon() - hides the emoticon
+          hidesign() - if the player is currently reading a sign, then stop reading
+          scrollsign(int) - if the player is currently reading a sign, then scroll one page; parameter is the key action (0 means up, others mean scroll down)
+          showemoticon(str) - shows an emoticon file
+          showemoticonbykey(int) - shows an emoticon depending on the provided key (VK_A or getascii('a'))
+
+        TServerNPC (TServerPlayer):
+          actionplayer - integer (read only)
+          hearts - float
+          height - float (read only)
+          horseimg - string
+          hp - float
+          hurtdx - float
+          hurtdy - float
+          image - string
+          isblocking - boolean - makes the npc blocking or non-blocking, this will overwrite the info sent by the server
+          isblockingprojectiles - boolean
+          layer - integer
+          npcsindex - integer (read only)
+          peltwithblackstone - boolean (read only)
+          peltwithbush - boolean (read only)
+          peltwithnpc - boolean (read only)
+          peltwithsign - boolean (read only)
+          peltwithstone - boolean (read only)
+          peltwithvase - boolean (read only)
+          save - object (read only)
+          shieldpower - integer
+          sprite - integer
+          swordpower - integer
+          visible - boolean
+          width - float (read only)
+          x - float
+          y - float
+          blockagain()
+          blockagainlocal()
+          canbecarried()
+          canbepulled()
+          canbepushed()
+          cannotbecarried()
+          cannotbepulled()
+          cannotbepushed()
+          carryobject(str)
+          changeimgcolors(int, float, float, float, float)
+          changeimgmode(int, int)
+          changeimgpart(int, int, int, int, int)
+          changeimgvis(int, int)
+          changeimgzoom(int, float)
+          destroy()
+          dontblock()
+          dontblocklocal()
+          drawaslight()
+          drawoverplayer()
+          drawunderplayer()
+          findimg(int) - returns object
+          hide()
+          hideimg(int)
+          hideimgs(int, int) - hides images from startindex to endindex (including the endindex)
+          hidelocal()
+          hurt(int)
+          lay(str)
+          message(str)
+          move(float, float, float, int) - moves the npc smoothly, parameters are delta x, delta y, time and options:  cache type (0, 1-cache, 2-append) + blockcheck(4) + eventwhendone(8) + applydir(16)
+          setbow(str)
+          setcharani(str, str)
+          setchargender(str)
+          setimg(str)
+          setimgpart(str, int, int, int, int)
+          setshape(int, int, int) - Enables rectangular blocking behaviour for the NPC. Parameters are shape type (right now only 1 for rectangular is supported), and the width and height in pixels.
+          setshape2(int, int, obj) - Enables tile-based blocking behaviour. Parameters are tile width, height and an array of tile types.
+          setzoomeffect(float) - zooms (if parameter is greater than 1) or shrinks the NPC
+          shootarrow(int)
+          shootball()
+          shootfireball(int)
+          shootfireblast(int)
+          shootnuke(int)
+          show()
+          showani(int, float, float, int, str) - returns object
+          showani2(int, float, float, float, int, str) - returns object
+          showcharacter()
+          showimg(int, str, float, float) - returns object
+          showimg2(int, str, float, float, float) - returns object
+          showlocal()
+          showpoly(int, obj) - returns object
+          showpoly2(int, obj) - returns object
+          showtext(int, float, float, str, str, str) - returns object
+          showtext2(int, float, float, float, str, str, str) - returns object
+          take(str)
+          take2(int)
+          takehorse(int)
+          throwcarry()
+          timereverywhere()
+
+          TServerWeapon (TServerNPC):
+            isweapon - boolean (read only)
+
+    TServerBomb (TLevelObject):
+      image - string
+      power - integer
+      time - float
+
+    TServerCarry (TLevelObject):
+
+    TServerChest (TLevelObject):
+      isopen - boolean (read only)
+      item - string (read only)
+
+    TServerExtra (TLevelObject):
+      time - float (read only)
+      type - integer (read only)
+
+    TServerFlying (TLevelObject):
+      dir - integer (read only)
+      dx - float
+      dy - float
+      from - integer (read only)
+      type - integer (read only)
+
+    TServerLeap (TLevelObject):
+
+    TServerSign (TLevelObject):
+      text - string
+
+    TShowImg (TLevelObject):
+      actor - object (read only)
+      alpha - float
+      angle - float - particle movement angle
+      ani - string
+      attachoffset - string
+      attachtoowner - boolean
+      blue - float
+      code - string - the old representation as 'font@style@text'
+      dimension - integer
+      dir - integer
+      emitter - object (read only)
+      flashfile - string
+      font - string
+      green - float
+      height - float
+      image - string
+      imageindex - integer (read only)
+      layer - integer
+      lifetime - float - particle lifetime
+      mode - integer - the image drawing mode (0 - add, 1 - transparent, 2 - subtract, 3 - daynight)
+      movementvector - string - particle movement vector (angle + zangle + speed)
+      parth - integer
+      partw - integer
+      partx - integer
+      party - integer
+      playerlook - boolean - if the animation should take it's head, body, sword, shield and attr[] from the owner (playerlook), set this to false if you want to set the images yourself by changing showimg.actor.head etc.
+      polygon - object
+      position - string
+      red - float
+      rotation - float
+      rotationcenter - string - the current rotation center (only works when useowncenter=true)
+      shadowcolor - string
+      shadowoffset - string
+      sound - string - particle sound
+      speed - float - particle movement speed
+      spin - float
+      stretchx - float
+      stretchy - float
+      style - string
+      text - string
+      textshadow - boolean
+      uniqueparticle - boolean - says if each particle should store it's own data (good for text emitters)
+      useowncenter - boolean - by default the showimg is rotated around the image center, set this to true and set rotationcenter for custom rotations
+      width - float
+      x - float
+      y - float
+      z - float
+      zangle - float - particle movement zangle
+      zoom - float
+
+  TParticleEmitter (TGraalVar):
+    attachposition - boolean
+    autorotation - boolean
+    checkbelowterrain - boolean
+    clippingbox - string
+    cliptoscreen - boolean
+    continueafterdestroy - boolean
+    currentparticlecount - integer (read only)
+    delaymax - float
+    delaymin - float
+    dropemitter - object (read only)
+    dropwateremitter - object (read only)
+    emissionoffset - string
+    emitatterrainheight - boolean
+    emitautomatically - boolean
+    emittedparticles - integer (read only)
+    firstinfront - boolean
+    forceaboveterrain - boolean
+    isfrozen - boolean
+    maxparticles - integer
+    movementfactor - float
+    noclipping - boolean - if set to true it will disable any clipping to screen or clipping box
+    nrofparticles - integer
+    particle - object (read only)
+    particletypes - integer
+    showonground - boolean - show the particles parallel to the ground, only for 3D particles
+    showontop - boolean - show the particles on top of any 3d object, only for 3D particles
+    switchyandzaxis - boolean - switches y and z axis when drawing, only for 3D particles
+    wraptoclippingbox - boolean
+    addemitmodifier(str, float, float, str, str, float, float) - returns object
+    addglobalmodifier(str, float, float, str, str, float, float) - returns object
+    addlocalmodifier(str, float, float, str, str, float, float) - returns object
+    advancetime(float)
+    emit()
+    emitat(str)
+    removemodifiers()
+    removeparticles()
+
+  TParticleModifier (TGraalVar):
+    addmod(str, str, float, float)
+
+  TRTMPStream (TGraalVar):
+    channelid - integer
+    file - string
+    mode - string
+    recordfile - string
+    streamid - integer (read only)
+    thumbnailfile - string
+    destroy()
+
+  TScriptFunction (TGraalVar):
+
+  TServerLevel (TGraalVar):
+    compsdead - boolean (read only)
+    height - integer (read only)
+    isnopkzone - boolean
+    issparringzone - boolean (read only)
+    nopkzone - boolean - same like 'isnopkzone'
+    tilelayercount - integer
+    tilemap - object (read only) - the tile map when using new level format
+    width - integer (read only)
+    findareanpcs(float, float, float, float) - returns object - returns an array of all npcs at the specified rectangle (x,y,width,height)
+    getmappartfile(float, float) - returns string
+    hitcompu(int, int, float, float)
+    putbomb(int, float, float) - adds a classic bomb with the specified power, x and y
+    putbomb2(int, float, float, str) - adds a classic bomb with the specified power, x, y and image (default bomb1.png)
+    putexplosion(int, float, float)
+    putexplosion2(int, int, float, float)
+    puthorse(str, float, float)
+    reflectarrow(int)
+    removearrow(int)
+    removebomb(int)
+    removecompus()
+    removeexplo(int)
+    removehorse(int)
+    removeitem(int)
+    setz(int, int, int, int, float, float, float, float)
+    shoot(float, float, float, float, float, float, str, str) - shoots a projectile with x,y,z,angle,zangle,strength,ani,aniparams
+    testbomb(float, float) - returns integer
+    testexplo(float, float) - returns integer
+    testhorse(float, float) - returns integer
+    testitem(float, float) - returns integer
+    testnpc(float, float) - returns integer
+    testsign(float, float) - returns integer
+    tiletype(float, float) - returns integer
+
+  TServerLevelLink (TGraalVar):
+    destlevel - string (read only)
+    destx - float (read only)
+    desty - float (read only)
+    height - float (read only)
+    width - float (read only)
+    x - float (read only)
+    y - float (read only)
+
+  TStaticVar (TGraalVar):
+    destroy()
+
+    Array (TStaticVar):
+      length - integer (read only)
+      array(params...) - returns object
+      push(params...) - returns integer - add array members at the end
+      splice(params...) - remove array members, parameters are start index and number of members
+      unshift(params...) - returns integer - insert array members at the beginning
+
+    Color (TStaticVar):
+      color(params...) - returns object
+      setrgb(int)
+
+    Date (TStaticVar):
+      date(params...) - returns object
+
+    Key (TStaticVar):
+      backspace - integer (read only)
+      capslock - integer (read only)
+      control - integer (read only)
+      deletekey - integer (read only)
+      down - integer (read only)
+      end - integer (read only)
+      enter - integer (read only)
+      escape - integer (read only)
+      home - integer (read only)
+      insert - integer (read only)
+      left - integer (read only)
+      pgdn - integer (read only)
+      pgup - integer (read only)
+      right - integer (read only)
+      shift - integer (read only)
+      space - integer (read only)
+      tab - integer (read only)
+      up - integer (read only)
+      addlistener(obj)
+      getascii() - returns integer
+      getcode() - returns integer
+      isaccessible() - returns boolean
+      isdown(int) - returns boolean
+      istoggled(int) - returns boolean
+      removelistener(obj) - returns boolean
+
+    Math (TStaticVar):
+      pi - float (read only)
+      sqrt1_2 - float (read only)
+      sqrt2 - float (read only)
+      abs(float) - returns float
+      atan(float) - returns float
+      atan2(float, float) - returns float
+      ceil(float) - returns float
+      cos(float) - returns float
+      floor(float) - returns integer
+      log(float) - returns float
+      max(float, float) - returns float
+      min(float, float) - returns float
+      pow(float, float) - returns float
+      random() - returns float
+      round(float) - returns float
+      sin(float) - returns float
+      sqrt(float) - returns float
+      tan(float) - returns float
+
+    MRandomGenerator (TStaticVar):
+      seed - integer
+      randfloat() - returns float - a random floating point number between 0 and 1
+      randint() - returns integer - a random integer number between 0 and 2147483647, use the modulus operator to generate a value in a smaller range (e.g. obj.randInt()%10 to get a value between 0 and 9)
+
+      MRandomLCG (MRandomGenerator):
+
+      MRandomR250 (MRandomGenerator):
+
+    Sound (TStaticVar):
+      sound(params...) - returns object
+
+    String (TStaticVar):
+      string(params...) - returns object
+
+    TActionScriptVar (TStaticVar):
+
+    TSocket (TStaticVar):
+      onBind() event - the bind() call was successful
+      onBindFailed() event - the bind() call failed, wrong port or missing rights
+      onClose() event - the socket connect has been closed
+      onConnect() event - connect() succeeded
+      onConnectFailed() event - connect() failed
+      onNewClient(obj) event - a new client connected to the bound socket
+      onReceiveData(str) event - received (TCP) data
+      onReceiveDataPackage(str) event - received a data package (when using packagedelimiter)
+      onReceiveUDPData(str, str, int) event - received UDP data: data, sender ip and port
+      address - string (read only) - the server address this socket connected to
+      data - string - incoming data, if you are not using packagedelimiter then you must parse the incoming data yourself and clear it once you don't need it anymore
+      enablessl - boolean - enables SSL on the connection, enable this before calling connect()
+      error - string (read only) - gives the error string if there was a problem
+      ipaddress - string (read only) - gives the ipv4-address as string
+      isconnected - boolean (read only) - says if the socket is currently connected or bound
+      outdatalength - integer (read only) - how much data is not transferred to the other side yet
+      packagedelimiter - string - if a delimiter is specified then the engine will automatically split the incoming data into packages and invoke onReceiveDataPackage(string); note that setting this delimiter will immediately invoke onReceiveDataPackage events, so do this after joining the classes which contain the event handler functions
+      parent - object (read only) - the server socket this client is belonging to (in parent.clients)
+      port - integer (read only) - the port this socket is bound or connected to
+      sslcertfile - string - the ssl certificate, can only be used in combination with enablessl=true and a sslkeyfile
+      sslcipherlist - string - sets the SSL encryption and integrity check (e.g. AES-128-MD5)
+      sslkeyfile - string - the ssl key, can only be used in combination with enablessl=true and a sslcertfile
+      sslprotocol - string - sets the SSL protocol (SSLv3, TLSv1 etc.), but normally not needed
+      sslverifycert - string - sets the SSL verification certificate or certificate chain (buffer not file)
+      bind(int, bool) - binds the given port, second parameter says if it should be udp; when a client connects an onNewClient(newsocket) event will be invoked
+      close() - closes the socket, which means it will be disconnected or not longer bound
+      connect(str, int) - connects to the specified host and port, once the connection is established an onConnect event will be invoked and you receive onReceiveData(string) events when the other side of the connection sends data; if the connection fails then an onConnectFailed event will be invoked
+      send(str) - sends data to the other side of the connection
+      sendudp(str, str, int) - sends data to the specified host and port, the host must be an ip address
+
+      TRTMPClient (TSocket):
+        onCall(int, int, params...) event - remote call by the client: channel id, stream id, parameters
+        onGeneratedThumbnail(obj, str) event - a video thumbnail has been generated for a stream: stream object and filename
+        onHandShake() event - the other side has sent the connection handshake
+        call(int, int, params...)
+        createstream(int) - returns object
+        getstream(int) - returns object
+        sendhandshake()
+        sendinitialping()
+
+  TTileAnimation (TGraalVar):
+    animationcycle - boolean
+    animationframes - string
+    animationtime - float
+    dir - string
+    imagemap - string
+    randomstart - boolean
+    startframe - integer
+
+  TTileImageMap (TGraalVar):
+    allowunload - boolean
+    cellcountx - integer
+    cellcounty - integer
+    cellheight - integer
+    celloffsetx - integer
+    celloffsety - integer
+    cellroworder - integer
+    cellstridex - integer
+    cellstridey - integer
+    cellwidth - integer
+    filtermode - string
+    filterpad - boolean
+    framecount - integer
+    imagemode - string
+    imagename - string
+    linkimagemaps - string
+    preferperf - boolean
+    preload - boolean
+
+  TTileMap (TGraalVar):
+    clear() - clears the tile map, only works for script-created tile maps
+    destroy() - deletes the tile map, only works for script-created tile maps
+    findanimation(str) - returns object
+    findimagemap(str) - returns object
+    loadtilemap(str, str) - returns object - use loadTileMapXML instead
+    loadtilemapxml(str) - returns object - loads a level in the new format (gxml); this is for data processing only, if you want to display it then use GuiTilesCtrl or create a gmap with the line TILEMAP yourmap.gxml
+    reload()
+    saveasimage(str, int, bool) - generates a screenshot of the whole map, parameters are the file name, number of pixels per unit and if it should clip to visible objects
+
+  TTileMapLayer (TGraalVar):
+    sortmode - string - defines how objects are sorted in this layer,  can be "Normal" or "Y Axis"
+
+  TTileMapObject (TGraalVar):
+    collisionactivereceive - boolean
+    collisionpolylist - string
+    flipx - boolean
+    flipy - boolean
+    layer - integer
+    position - string
+    rotation - float
+    size - string
+    sortpoint - string
+
+    TTileLayer (TTileMapObject):
+      layerfile - string
+      tilecountx - integer
+      tilecounty - integer
+      tilesizex - float
+      tilesizey - float
+      gettileanimation(int, int) - returns string
+      gettileflags(int, int) - returns string
+      gettileframe(int, int) - returns integer
+      gettileimagemap(int, int) - returns string
+
+    TTileSprite (TTileMapObject):
+      animationname - string
+      frame - integer
+      imagemap - string
+
+  TTilesLayer (TGraalVar):
+    alpha - float
+    blue - float
+    green - float
+    layerindex - integer (read only)
+    offset - string
+    red - float
+    x - float
+    y - float
+    z - float
+    updateboard(int, int, int, int)
+
+  TUpdatePackage (TGraalVar):
+    accounts - object (read only)
+    description - string (read only)
+    downloadcomplete - boolean (read only)
+    downloadedsize - integer (read only)
+    filecount - integer (read only)
+    filedownloadedsize - integer (read only)
+    filename - string (read only)
+    filetotalsize - integer (read only)
+    isuninstalled - boolean (read only)
+    lastdownloadfile - string (read only)
+    localversion - float (read only)
+    mode - string (read only)
+    name - string (read only)
+    parent - object (read only)
+    platform - string (read only)
+    protectoverwrite - boolean (read only)
+    totalsize - integer (read only)
+    usechecksum - boolean (read only)
+    version - float (read only)
+    reinstall() - returns boolean
+    uninstall() - returns boolean
+    update() - returns boolean
+
+  TWindow (TGraalVar):
+    bounds - string - array of {x,y,width,height}, combination of position and extent
+    extent - string - width and height of the control
+    height - integer
+    position - string
+    screenbounds - string (read only) - array of {x,y,width,height}, position and size of the screen where this window is shown
+    screenheight - integer (read only) - height of the screen where this window is shown
+    screenwidth - integer (read only) - width of the screen where this window is shown
+    width - integer
+    x - integer
+    y - integer
+
