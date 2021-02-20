@@ -17,9 +17,16 @@ For now:
     to add custom int types and required fields).
     
   marshallComponents.pixie (WIP):
-    Derived from putDataInProto.pixie, does nothing more for now.
+    Derived from putDataInProto.pixie, takes a header file and builds "messages".
+    
+  GS2Wiki6Nodupes.pixie (see python folder):
+    Takes a list (Graal.exe -scripfunctions) and transforms it in a Wiki compatible table. I had to
+    make a python out of it to be able to parse the whole file in one go.
+    
+  headerMaker.pixie (WIP):
+    Takes cpp code and makes a header out of it.
     
 
-They're all works in progress, the bool type isn't taken into account yet
-and some tweaks may be necessary for them to work in ALL cases. They suit
-my purpose, no garantee whatsoever that they will suit yours.
+Some tweaks may be necessary for the regular expressions to work in ALL cases. 
+The works in progress aren't to be used without a quick verification. 
+These suit my purpose, no garantee whatsoever that they will suit yours.
