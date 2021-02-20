@@ -1,4 +1,5 @@
 # pixies
+<pre>
 My pixie files
 
 This repository is for me to have backups of my pixie files made with the excellent regexp editor Pixie.
@@ -30,3 +31,4 @@ For now:
 Some tweaks may be necessary for the regular expressions to work in ALL cases. 
 The works in progress aren't to be used without a quick verification. 
 These suit my purpose, no garantee whatsoever that they will suit yours.
+</pre>
