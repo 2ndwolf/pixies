@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<PixieFileV1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pattern>^
+\s*
+(
+(?&lt;scope&gt;[a-zA-Z]+)(\s\((?&lt;parent&gt;[a-zA-Z]+)\))*:
+|
+(?&lt;listing&gt;[A-Za-z0-9_]+(?&lt;isfunction&gt;\([a-z\.,\s]*\))*)
+(
+\s
+(
+(((?&lt;isevent&gt;event\s*)|((-\s)(?&lt;doesreturn&gt;returns\s)*(?&lt;io&gt;[a-z]+)*(?&lt;readonly&gt;\s\(read\sonly\))*\s))*(-\s(?&lt;description&gt;.*))*)
+)$
+)*
+)
+
+</Pattern>
+  <Input> onControlKeyDown(int, str, int, str) event - a control key (VK_ESCAPE, VK_F1 etc.) has been pressed, parameters are keycode, keytext, scancode, external window name
+  onControlKeyUp(int, str, int, str) event - a control key (VK_ESCAPE, VK_F1 etc.) has been released, parameters are keycode, keytext, scancode, external window name
+  onDefaultStyleChanges(str) event - the $pref::Video::defaultguistyle has been changed
+  onExternalStyleChanges(str) event - the $pref::Video::externalguistyle has been changed
+  onFileChunkReceived(str, int, int) event - file download progress: filename, current position, full size
+  onFileDownloaded(str, int) event - a game file has been downloded: filename, size
+  onFilesUploaded() event - finished uploading all files to the file browser
+  onFirstResponderChanges(obj) event - the control that received the keyboard input changed
+  onFolderLog(str) event - scripted RC file browser message
+  onLevelFileUpdated(str) event - a game file has been updated: filename
+  onLogMessage(str, float, float, float, str) event - log message: text, red, green, blue, log type
+  onMapClick(obj) event - clicked on a player on the map: player object
+  onMouseYawPitch(int, int) event - the mouse moved in 3D mode: yaw and pitch
+  onMusicDataReceived(str, str) event - music meta data received: name and value
+  onOpenPlayerPositionWindow() event - the key for opening the positon window (F5) has been pressed
+  onOpenProfileWindow(obj) event - right click on a player or call to showProfile() to open the profile window
+  onOpenServerList() event - the key for opening the serverlist (F8) has been pressed
+  onPackagesDownloadComplete() event - all update packages (.gupd files) have been downloaded
+  onPackagesDownloaded() event - some update packages (.gupd files) have been downloaded
+  onPlayerChanges(obj, int) event - the look of a player changed: player object and id</Input>
+  <ReplacementString>${0} (Euro style: ${day}/${month}/${year})</ReplacementString>
+  <Options>
+    <PixieRegexOption Selected="false" OptionName="IgnoreCase" />
+    <PixieRegexOption Selected="true" OptionName="Multiline" />
+    <PixieRegexOption Selected="false" OptionName="ExplicitCapture" />
+    <PixieRegexOption Selected="false" OptionName="Singleline" />
+    <PixieRegexOption Selected="true" OptionName="IgnorePatternWhitespace" />
+    <PixieRegexOption Selected="false" OptionName="RightToLeft" />
+    <PixieRegexOption Selected="false" OptionName="ECMAScript" />
+    <PixieRegexOption Selected="false" OptionName="CultureInvariant" />
+  </Options>
+  <ReplaceLiveOutput>false</ReplaceLiveOutput>
+  <HighlightLiveOutput>true</HighlightLiveOutput>
+  <PopulateReplacement>true</PopulateReplacement>
+  <UseCodeReplacement>true</UseCodeReplacement>
+  <ReplacementCode>int _matchCount = 0;
+string type;
+string action;
+string scope = "TGraalVar::TParticleEmitter";
+
+public string outputPath(string scoped, string path, string parent){
+  int endIndex = lastMember(path, parent);
+  string output = "";
+  for(int i = 0; i &lt; endIndex; i++){
+    output+=path[i];
+  }
+  return output + "::" + scoped;
+}
+
+public int lastMember(string path, string parent){
+  for(int i = 0; i &lt; path.Length; i++){
+    for(int j = 0; j &lt; parent.Length; j++){
+      if(path[i+j] == parent[j]){
+        if(j == parent.Length - 1){
+          return i+j+1;
+        }
+      }
+      else break;
+    }
+  }
+  return 0;
+}
+
+public string Replace(Match match)
+{
+  if(match.Groups["scope"].Length!=0){
+    if(match.Groups["parent"].Length!=0){
+      scope = outputPath(match.Groups["scope"].Value, scope, match.Groups["parent"].Value);
+    } else {
+      scope = match.Groups["scope"].Value;
+    }
+    return "";
+  }
+  type = "Flag";
+  if(match.Groups["isfunction"].Length != 0){
+    if(match.Groups["isevent"].Length != 0){
+      type = "Event";
+    } else type = "Function";
+  }
+
+  if(match.Groups["doesreturn"].Length != 0 || match.Groups["readonly"].Length != 0){
+    action = "O: ";
+  } else if (type=="Flag"){
+    action = "I/O: ";
+  } else {
+    action = "I: ";
+  }
+
+  return "!" + scope + "||" + type + "||[[" + match.Groups["listing"].Value + "]]||" + (match.Groups["description"].Length != 0 ? "*" + match.Groups["description"].Value : "-") +  "||" + (match.Groups["io"].Length == 0 ? "-" : action + match.Groups["io"].Value) + "||" + "Unconfirmed||" + (type == "Function" ? "-" : (match.Groups["readonly"].Length!=0 ? "r":"rw")) + "\n|-" ;
+}
+</ReplacementCode>
+</PixieFileV1>
