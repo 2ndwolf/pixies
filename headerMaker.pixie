@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<PixieFileV1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pattern>(^(?&lt;indent&gt;\s*) 
+((?&lt;type&gt;[A-Za-z0-9:]+) |
+([A-Za-z0-9:]+(?&lt;vector&gt;[A-Za-z0-9]+)\&lt;(?&lt;vectortype&gt;[A-Za-z0-9:]+)\&gt;))
+\s
+(?&lt;value&gt;[\w]+\(+[\w():,&lt;&gt;\s*]+){) |
+(^(?&lt;indent&gt;\s*)(?&lt;enum&gt;[A-Z0-9]+),*)(?&lt;suffix&gt;\s?[(A-Za-z0-9]+)? |
+(?&lt;prefix&gt;{},\s)(?&lt;value&gt;[A-Za-z0-9]+) |
+(?&lt;endif&gt;\#endif)</Pattern>
+  <Input>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include &lt;fstream&gt;
+#include &lt;cstring&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+#include &lt;google/protobuf/io/zero_copy_stream_impl.h&gt;
+#include &lt;google/protobuf/io/gzip_stream.h&gt;
+
+#include "src/components/ganiInformation.h"
+#include "includes/ganiToServerBSP.h"
+#include "src/proto/gani_building.pb.h"
+
+namespace Saving {
+  void ganiToServerBSP(GaniBuilding::GaniInformation object, std::string fileName, std::string as){
+    gani_building_gani_information *pointer = new gani_building_gani_information;
+    populate_GaniInformation(object, pointer);
+
+     auto uncompressedBytes = (*pointer).ByteSizeLong();
+     std::cout &lt;&lt; uncompressedBytes;
+
+     std::unique_ptr&lt;char[]&gt; buffer(new char[uncompressedBytes]);
+     google::protobuf::io::ArrayOutputStream aos(buffer.get(), (int) uncompressedBytes);
+     google::protobuf::io::GzipOutputStream gos(&amp;aos);
+
+     if (pointer-&gt;SerializeToZeroCopyStream(&amp;gos)){
+       gos.Close();
+
+       if (gos.ZlibErrorCode() &gt; 0)
+       {
+         auto compressedBytes = aos.ByteCount();
+         std::ofstream out(fileName + "." + as, std::ios::binary);
+         out.write(buffer.get(), compressedBytes);
+
+         std::cout &lt;&lt; "Wrote compressed Protobuf message of size " &lt;&lt; compressedBytes &lt;&lt; " bytes ("
+           &lt;&lt; (100.0 * (uncompressedBytes - compressedBytes) / uncompressedBytes) &lt;&lt; "% compression ratio): "
+           &lt;&lt; fileName + "." + as &lt;&lt; std::endl;
+       }
+    }
+}
+
+void populate_SpriteDef(GaniBuilding::SpriteDef object, gani_building_sprite_def* pointer){
+  pointer-&gt;set_index(object.index);
+  pointer-&gt;set_image(object.image);
+  pointer-&gt;set_off_x(object.offX);
+  pointer-&gt;set_off_y(object.offY);
+  pointer-&gt;set_width(object.width);
+  pointer-&gt;set_height(object.height);
+  pointer-&gt;set_name(object.name);
+  pointer-&gt;set_default_image(
+    static_cast&lt;gani_building_default_image_type&gt;(object.defaultImage));
+}
+
+void populate_Sound(GaniBuilding::Sound object, gani_building_sound* pointer){
+  pointer-&gt;set_file_name(object.fileName);
+  pointer-&gt;set_x(object.x);
+  pointer-&gt;set_y(object.y);
+}
+
+void populate_AniSprite(GaniBuilding::AniSprite object, gani_building_ani_sprite* pointer){
+  pointer-&gt;set_sprite_index(object.spriteIndex);
+  pointer-&gt;set_x(object.x);
+  pointer-&gt;set_y(object.y);
+  pointer-&gt;set_layer(object.layer);
+}
+
+void populate_AniDir(GaniBuilding::AniDir object, gani_building_ani_dir* pointer){
+  pointer-&gt;set_direction(
+    static_cast&lt;gani_building_directions&gt;(object.direction));
+  populate_AniSprite(object.aniSprites, pointer);
+}
+
+void populate_AniFrame(GaniBuilding::AniFrame object, gani_building_ani_frame* pointer){
+  populate_AniDir(object.aniDirs, pointer);
+  pointer-&gt;set_wait(object.wait);
+  populate_Sound(object.sounds, pointer);
+}
+
+void populate_AttachedSprite(GaniBuilding::AttachedSprite object, gani_building_attached_sprite* pointer){
+  pointer-&gt;set_sprite_a(object.spriteA);
+  pointer-&gt;set_sprite_b(object.spriteB);
+  pointer-&gt;set_rel_x(object.relX);
+  pointer-&gt;set_rel_y(object.relY);
+}
+
+void populate_GaniInformation(GaniBuilding::GaniInformation object, gani_building_gani_information* pointer){
+  populate_SpriteDef(object.spriteDefs, pointer);
+  populate_AniFrame(object.aniFrames, pointer);
+  populate_Property(object.properties, pointer);
+  populate_AttachedSprite(object.attachedSprites, pointer);
+  populate_defaultAttributes(object.defaultAttributes, pointer);
+  populate_defaultParameters(object.defaultParameters, pointer);
+  pointer-&gt;set_default_head(object.defaultHead);
+  pointer-&gt;set_default_body(object.defaultBody);
+  pointer-&gt;set_next_gani(object.nextGani);
+}
+
+void populate_AniSprite(std::vector&lt;GaniBuilding::AniSprite&gt; object, gani_building_ani_dir* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_AniSprite(object[i], pointer-&gt;add_ani_sprites());
+  }
+}
+
+void populate_AniDir(std::vector&lt;GaniBuilding::AniDir&gt; object, gani_building_ani_frame* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_AniDir(object[i], pointer-&gt;add_ani_dirs());
+  }
+}
+
+void populate_Sound(std::vector&lt;GaniBuilding::Sound&gt; object, gani_building_ani_frame* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_Sound(object[i], pointer-&gt;add_sounds());
+  }
+}
+
+void populate_SpriteDef(std::vector&lt;GaniBuilding::SpriteDef&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_SpriteDef(object[i], pointer-&gt;add_sprite_defs());
+  }
+}
+
+void populate_AniFrame(std::vector&lt;GaniBuilding::AniFrame&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_AniFrame(object[i], pointer-&gt;add_ani_frames());
+  }
+}
+
+// Populates an enum 
+void populate_Property(std::vector&lt;GaniBuilding::Property&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    pointer-&gt;add_properties(static_cast&lt;gani_building_property&gt;(object[i]));
+  }
+}
+
+void populate_AttachedSprite(std::vector&lt;GaniBuilding::AttachedSprite&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    populate_AttachedSprite(object[i], pointer-&gt;add_attached_sprites());
+  }
+}
+
+void populate_defaultAttributes(std::vector&lt;std::string&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    pointer-&gt;add_default_attributes(object[i]);
+  }
+}
+
+void populate_defaultParameters(std::vector&lt;std::string&gt; object, gani_building_gani_information* pointer){
+  for(int i = 0; i &lt; object.size; i++){
+    pointer-&gt;add_default_parameters(object[i]);
+  }
+}
+
+}
+</Input>
+  <ReplacementString>${1} ${2}</ReplacementString>
+  <Options>
+    <PixieRegexOption Selected="false" OptionName="IgnoreCase" />
+    <PixieRegexOption Selected="true" OptionName="Multiline" />
+    <PixieRegexOption Selected="false" OptionName="ExplicitCapture" />
+    <PixieRegexOption Selected="false" OptionName="Singleline" />
+    <PixieRegexOption Selected="true" OptionName="IgnorePatternWhitespace" />
+    <PixieRegexOption Selected="false" OptionName="RightToLeft" />
+    <PixieRegexOption Selected="false" OptionName="ECMAScript" />
+    <PixieRegexOption Selected="false" OptionName="CultureInvariant" />
+  </Options>
+  <ReplaceLiveOutput>true</ReplaceLiveOutput>
+  <HighlightLiveOutput>true</HighlightLiveOutput>
+  <PopulateReplacement>true</PopulateReplacement>
+  <UseCodeReplacement>true</UseCodeReplacement>
+  <ReplacementCode>// headerMaker.pixie
+
+public string Replace(Match match)
+{
+	return match.Groups["indent"].Value + match.Groups["type"].Value + " " + match.Groups["value"].Value + ";";
+}</ReplacementCode>
+</PixieFileV1>
